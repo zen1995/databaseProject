@@ -22,6 +22,9 @@ function login(){
     	                    window.location.reload();
     	                }
     	            }
+    	            else{
+    	            	alert("用户名或密码错误！");
+    	            }
     			}
     		});
     $.ajax(ajax);

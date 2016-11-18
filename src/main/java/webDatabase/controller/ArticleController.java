@@ -12,11 +12,9 @@ public class ArticleController {
    
     @RequestMapping(value="/")  
     public String index_jsp(Model model)throws Exception{  
-        model.addAttribute("str0121", "Hellow world"); 
         List<Map<String,Object>> list = Articlem.getAllArticle();
         System.out.println(list);
         model.addAttribute("articles",(Object)list);
-        model.addAttribute("a","asas"); 
          return "article/showAllArticle";
     }   
 //    @RequestMapping(value="/*")  
