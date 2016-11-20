@@ -374,6 +374,32 @@ public class DatabaseHelper {
 		return result;
 	}
 
+	public static DatabaseResult search(String tableName, List<Pair> pairs,String order,String orderType) throws SQLException {
+		Connection connection = DBConnection.getConnection();
+		String s = "select * from " + tableName + " where (";
+		int size = pairs.size();
+		for (int i = 0; i < size; i++) {
+			s += " `" + pairs.get(i).key + "` = ?";
+			if (i != size - 1) {
+				s += " and ";
+			}
+		}
+		s += " ) order by "+order+" "+orderType; 
+
+		PreparedStatement statement = connection.prepareStatement(s);
+		for (int i = 0; i < size; i++) {
+			statement.setObject(i + 1, pairs.get(i).value);
+		}
+		ResultSet set = statement.executeQuery();
+
+		DatabaseResult result = new DatabaseResult(set);
+		// System.out.println(result);
+		set.close();
+		statement.close();
+		connection.close();
+		return result;
+	}
+	
 	// public static insertColumn(String tabeName,String name,){
 	//
 	// }
