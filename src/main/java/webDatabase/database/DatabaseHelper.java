@@ -376,15 +376,21 @@ public class DatabaseHelper {
 
 	public static DatabaseResult search(String tableName, List<Pair> pairs,String order,String orderType) throws SQLException {
 		Connection connection = DBConnection.getConnection();
-		String s = "select * from " + tableName + " where (";
+		String s = "select * from " + tableName ;
+		
+		
 		int size = pairs.size();
-		for (int i = 0; i < size; i++) {
-			s += " `" + pairs.get(i).key + "` = ?";
-			if (i != size - 1) {
-				s += " and ";
+		if(size != 0){
+			s +=" where (";
+			for (int i = 0; i < size; i++) {
+				s += " `" + pairs.get(i).key + "` = ?";
+				if (i != size - 1) {
+					s += " and ";
+				}
 			}
+			s += " )"; 
 		}
-		s += " ) order by "+order+" "+orderType; 
+		s +=  " order by "+order+" "+orderType;
 
 		PreparedStatement statement = connection.prepareStatement(s);
 		for (int i = 0; i < size; i++) {

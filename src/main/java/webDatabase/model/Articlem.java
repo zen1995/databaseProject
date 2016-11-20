@@ -40,4 +40,15 @@ public class Articlem {
 			return result.getData().get(0);
 		}
 	}
+	
+	public static List<Map<String,String>> search(String type,String key){
+		List<Pair> list = new ArrayList<>();
+		if(type.equals("like")){
+			//list.add("")
+			//DatabaseHelper.search("article",);
+		}
+		
+		
+		return null;
+	}
 }
