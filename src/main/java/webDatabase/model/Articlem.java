@@ -11,44 +11,42 @@ import webDatabase.database.DatabaseResult;
 import webDatabase.database.Pair;
 
 public class Articlem {
-	public static List<Map<String, Object>> getAllArticle() throws SQLException{
+	public static List<Map<String, Object>> getAllArticle() throws SQLException {
 		DatabaseResult result = DatabaseHelper.search("article");
 		return result.getData();
 	}
-	
-	public static List<Map<String,Object>> getAllArticle(String byType)throws SQLException{
+
+	public static List<Map<String, Object>> getAllArticle(String byType) throws SQLException {
 		byType = byType.toLowerCase();
 		DatabaseResult result;
 		if (byType.equals("bylike")) {
-			result = DatabaseHelper.search("article",new ArrayList<>(),"likeCount","desc");
-		}
-		else {
-			result = DatabaseHelper.search("article",new ArrayList<>(),"id","desc");
+			result = DatabaseHelper.search("article", new ArrayList<>(), "likeCount", "desc");
+		} else {
+			result = DatabaseHelper.search("article", new ArrayList<>(), "id", "desc");
 		}
 		return result.getData();
 	}
-	
-	public static Map<String,Object> getSingleArticle(String aid)throws SQLException{
+
+
+	public static Map<String, Object> getSingleArticle(String aid) throws SQLException {
 		int id = Integer.valueOf(aid);
 		List<Pair> list = new ArrayList<>();
 		list.add(new Pair("id", aid));
-		DatabaseResult result = DatabaseHelper.search("article",list);
-		if(result.getData().isEmpty()){
+		DatabaseResult result = DatabaseHelper.search("article", list);
+		if (result.getData().isEmpty()) {
 			return null;
-		}
-		else {
+		} else {
 			return result.getData().get(0);
 		}
 	}
-	
-	public static List<Map<String,String>> search(String type,String key){
+
+	public static List<Map<String, String>> search(String type, String key) {
 		List<Pair> list = new ArrayList<>();
-		if(type.equals("like")){
-			//list.add("")
-			//DatabaseHelper.search("article",);
+		if (type.equals("like")) {
+			// list.add("")
+			// DatabaseHelper.search("article",);
 		}
-		
-		
+
 		return null;
 	}
 }

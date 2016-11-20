@@ -32,7 +32,12 @@ public class ArticleController {
     	}
     	return "TODO";
     }
-    
+
+	@RequestMapping(value = "/article/byuser")
+	public String articlebyuser() {
+		return "/article/byuser";
+	}
+	
     @RequestMapping("/article/search")
     public String search(HttpServletRequest request,Model model){
     	String queryType = request.getParameter("type");
