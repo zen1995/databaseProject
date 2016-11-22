@@ -5,11 +5,11 @@
   <div class="row">
     <div class="col s12 m6 offset-m3">
     <form name="input" action="" method="POST">
-      Username:
+       	user name:
       <input id = "userName" type="text" name="userName" ng-model = "userName"/>
-      password:
+     	password:
       <input id = "password" type="password" name="password" ng-model = "password"/>
-      <a class="waves-effect waves-light btn white black-text" onclick="login()">登陆</a>
+      <a class="waves-effect waves-light btn blue white-text" onclick="login()">登陆</a>
     </form>
     </div>
   </div>

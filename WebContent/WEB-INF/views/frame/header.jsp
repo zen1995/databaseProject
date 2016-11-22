@@ -36,7 +36,7 @@
 	<header ng-controller="header" style="margin-bottom: 100px">
 		<div class="navbar-fixed" style="position: fixed">
 			<nav class="light-blue lighten-1 z-depth-0" role="navigation"
-				style="background-image: url('/resource/static/img/headerBackground.png')">
+				style="">
 				<div class="nav-wrapper container ">
 					<a id="logo-container" href="/" class="brand-logo navbar-left">utopiaLab</a>
 					<a href="#" data-activates="mobile-demo" class="button-collapse">
@@ -45,7 +45,7 @@
 					<ul class="right hide-on-med-and-down">
 						<!--hide-on-med-and-down  right hide-on-small-only-->
 						<c:if test="${user.status == true}">
-							<li><a id="loginStatus" href="/user/"><c:out value="${user.name}"></c:out></a></li>
+							<li><a id="loginStatus" href="#"><c:out value="${user.name}"></c:out></a></li>
 						</c:if>
 						<c:if test="${user.status == false}">
 							<li><a id="registerBtn" href="/user/register">register</a></li>
@@ -55,14 +55,33 @@
 							<li id="signOutBtn"><a href="#">sign out</a></li>
 							<!--onclick="signOut()"-->
 						</c:if>
+						
 					</ul>
 					<ul class="side-nav" id="mobile-demo">
 						<c:if test="${user.status == true}">
-							<li><a href="/user/"></a></li>
+							<li><a href="#"></a></li>
 						</c:if>
 						<c:if test="${user.status == false}">
 							<li><a href="/user/register">register</a></li>
 							<li><a href="/user/login">sign in</a></li>
+							<ul id="articleSearch-p" class="dropdown-content">
+							<li><a href="/?showType=bylike" class='black-text'>点赞数</a></li>
+			      			<li class="divider" ></li>
+			      			<li><a href="/?showType=bytime" class='black-text'>最新</a></li>
+			      			<li><a href="/article/byuser" class='black-text'>按用户</a></li>
+							</ul>
+     						<li><a class="dropdown-button" href="#!" data-activates="articleSearch-p">
+     						Article<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+							<ul id="userSearch-p" class="dropdown-content">
+							<li class="divider" ></li>
+			     			<li><a href="/?showType=bytime" class='black-text'>新加入</a></li>
+			     			<li><a href="/searchUser/exact" class='black-text'>精确查找</a></li>
+							</ul>
+     						<li><a class="dropdown-button" href="#!" data-activates="userSearch-p">
+     						User<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+							
+							<!-- <li><a href="footer">页脚</a></li>
+							<li><a href="mobile">手机</a></li> -->
 						</c:if>
 						<c:if test="${user.status == true}">
 							<li><a href="#">sign out</a></li>
@@ -70,22 +89,51 @@
 						</c:if>
 					</ul>
 				</div>
-
 			</nav>
 		</div>
-		<div class="navbar-header light-blue lighten-1 z-depth-1"
-			style="min-height: 150px; background-image: url('/resource/static/img/headerBackground.png')">
-			<div class="container">
-				<!--<h1 style="margin-top: 0px; color: white" >Utopialab</h1>  position: absolute;-->
-			</div>
+		<div class="navbar-header light-blue lighten-1 z-depth-0" 
+			style="min-height: 50px;">
+			<nav class="light-blue lighten-1 z-depth-0">
+			    <div class="nav-wrapper" style="margin-top:50px">
+			    	<a href="#" data-activates="mobile-demo" class="button-collapse"></a>
+				    <ul class="hide-on-med-and-down">
+			      		<ul id="articleSearch" class="dropdown-content">
+						<li><a href="/?showType=bylike" class='blue-text'>点赞数</a></li>
+			      		<li class="divider" ></li>
+			      		<li><a href="/?showType=bytime" class='blue-text'>最新</a></li>
+			      		<li><a href="/article/byuser" class='blue-text'>按用户</a></li>
+						</ul>
+    					<li><a class="dropdown-button" href="#!" data-activates="articleSearch">
+    					Article<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+						<ul id="userSearch" class="dropdown-content">
+						<li class="divider" ></li>
+			     		<li><a href="/?showType=bytime" class='blue-text'>新加入</a></li>
+			     		<li><a href="/searchUser/exact" class='blue-text'>精确查找</a></li>
+						</ul>
+    					<li><a class="dropdown-button" href="#!" data-activates="userSearch">
+    					User<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+				   </ul>
+				    
+			    </div>
+		  	</nav>
 		</div>
+		
 
 		<script>
 			//isLogin();
-
+			$('.dropdown-button').dropdown({
+			    inDuration: 300,
+			    outDuration: 225,
+			    constrain_width: false, // Does not change width of dropdown to that of the activator
+			    hover: false, // Activate on hover
+			    gutter: 0, // Spacing from edge
+			    belowOrigin: false // Displays dropdown below the button
+			    }
+			  );
 			$(document).ready(function() {
 				$(".button-collapse").sideNav();
 			});
+			$(".button-collapse").sideNav();
 		</script>
 	</header>
 	<main>

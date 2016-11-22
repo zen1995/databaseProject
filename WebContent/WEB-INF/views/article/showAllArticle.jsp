@@ -10,15 +10,20 @@
 <%@include file="/WEB-INF/views/frame/header.jsp"%>
 
 <div class="container" ><!---->
+	<!-- Dropdown Trigger -->
+    
+
     <div class="row" id = "frame" ><!---->
     <c:forEach items = "${articles}" var = "article"> 
     
         <div class="col m8 offset-m2 s12"  ><!--id = "standard"-->
             <div class="card hoverable" >
+            
                 <div class="card-content ">
+                
                     <div class="center row" >
-
-                        <a ng-href="{{'/article/show/'+article.id}}" class="col s12">
+						
+                        <a ng-href={{'/article/show/'+article.id}} class="col s12">
                             <h5  ng-bind = "article.title" style="width: 100%">
                             <c:out value="${article.title} "></c:out>
                             </h5>
@@ -42,7 +47,7 @@
                 </div>
             </div>
         </div>
-        </c:forEach>
+        </c:forEach>       
     </div>
 </div>
 <script>
