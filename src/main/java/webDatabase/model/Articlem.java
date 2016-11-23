@@ -3,6 +3,7 @@ package webDatabase.model;
 import java.awt.Paint;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -56,6 +57,24 @@ public class Articlem {
 			return null;
 		}
 		return result.getData();
+	}
+	
+	public static void insertArticle(Map<String,Object> article)throws SQLException{
+		DatabaseHelper.insertRecord("article", article);
+		
+		//return true;
+	}
+	
+	public static boolean addTag(String tagName){
+		Map<String, Object> map = new HashMap<>();
+		map.put("tagName",tagName);
+		try {
+			DatabaseHelper.insertRecord("tag", map);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	public static void main(String[] args)throws Exception {
