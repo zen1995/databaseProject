@@ -1,4 +1,5 @@
 package webDatabase.controller;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -39,11 +40,15 @@ public class ArticleController {
 	}
 	
     @RequestMapping("/article/search")
-    public String search(HttpServletRequest request,Model model){
+    public String search(HttpServletRequest request,Model model)throws SQLException{
     	String queryType = request.getParameter("type");
     	String string = request.getParameter("value");
-    	//Articlem.search(queryType,string)
-    	
+    	List<Map<String,Object>> list = Articlem.search(queryType,string);
+    	model.addAttribute("articles",list);
+    	if(list === null){
+    		model.addAttribute("info","invalid paramer-"+queryType);
+    		return "TODO err Page";    		
+    	}
     	return "TODO";
     }
 }  

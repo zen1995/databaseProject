@@ -405,6 +405,19 @@ public class DatabaseHelper {
 		connection.close();
 		return result;
 	}
+	public static DatabaseResult query(String sql,Object ...args )throws SQLException{
+		Connection connection = DBConnection.getConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		for(int i=0;i < args.length;i++){
+			statement.setObject(i+1,args[i]);
+		}
+		ResultSet set = statement.executeQuery();
+		DatabaseResult result = new DatabaseResult(set);
+		set.close();
+		statement.close();
+		connection.close();
+		return result;
+	}
 	
 	// public static insertColumn(String tabeName,String name,){
 	//
