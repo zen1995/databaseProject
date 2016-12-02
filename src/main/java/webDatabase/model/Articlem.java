@@ -36,7 +36,7 @@ public class Articlem {
 		int id = Integer.valueOf(aid);
 		List<Pair> list = new ArrayList<>();
 		list.add(new Pair("id", aid));
-		DatabaseResult result = DatabaseHelper.search("article", list);
+		DatabaseResult result = DatabaseHelper.query("select * from articleview where id=? ",aid);
 		convertArticle(result.getData());
 		if (result.getData().isEmpty()) {
 			return null;
@@ -69,7 +69,13 @@ public class Articlem {
 		//return true;
 	}
 	
-
+	public static boolean deleteArticle(String aid)throws SQLException{
+		return DatabaseHelper.executeUpdate("delete form article where id=?", aid);
+	}
+	
+	public static void updateArticle(String aid,Map<String,Object> article)throws SQLException{
+		DatabaseHelper.editRecord("article", Integer.valueOf(aid), article);
+	}
 	
 	private static List<Map<String, Object>> convertArticle(List<Map<String, Object>> list){
 		for(Map<String, Object> map : list){

@@ -25,6 +25,7 @@ public class TableCreator {
 			createArticleLikeTable();
 			createTagTable();
 			createArticleTagTable();
+			createArticleView();
 		} catch (Exception e) {
 			logger.error("err", e);
 		}
@@ -76,12 +77,24 @@ public class TableCreator {
 
 	public static void createArticleTagTable() throws SQLException {
 		String sql = "create table articleTag(" + "id INT NOT NULL AUTO_INCREMENT,\n" + "articleId int,\n"
-				+ "tagId int,\n" + "PRIMARY KEY (`id`),\n" + "unique(id)," + "unique(tagId,articleId),"
-				+ "foreign key(tagId) references tag(id),\n" + "foreign key(articleId) references article(id)"
+				+ "tagId int,\n" + "PRIMARY KEY (`id`),\n" 
+				+ "unique(id)," 
+				+ "unique(tagId,articleId),"
+				//+ "foreign key(tagId) references tag(id),\n" 
+				//+ "foreign key(articleId) references article(id),"
+				+"CONSTRAINT FOREIGN KEY (`tagId`) REFERENCES `tag` (`id`)  ON  DELETE CASCADE,"
+				+"CONSTRAINT FOREIGN KEY (`articleId`) REFERENCES `article` (`id`)  ON  DELETE CASCADE"
 				+ ") ENGINE = InnoDB;";
 		DatabaseHelper.executeSql(sql);
 	}
 
+	public static void createArticleView()throws SQLException{
+		String sql = "create view articleview as "
+				+ " select article.id,name,publishUser,title,time,content,likeCount "
+				+ "from article join user on article.publishUser=user.id";
+		DatabaseHelper.executeSql(sql);
+	}
+	
 	private static void insertArticle() throws SQLException {
 		DatabaseResult result = DatabaseHelper.search("user");
 		List<Map<String, Object>> data = result.getData();

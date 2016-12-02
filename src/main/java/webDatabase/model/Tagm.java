@@ -33,12 +33,25 @@ public class Tagm {
 		try {
 			Connection connection = DBConnection.getConnection();
 			Statement statement = connection.createStatement();
-			
+			statement.executeUpdate("delete from tag where tag.name="+tagName);
 			statement.close();
 			connection.close();
+			return true;
 		} catch (Exception e) {
-			// TODO: handle exception
+			return false;
 		}
+	}
+	
+	public static boolean addArticleTag(String tagId,String articleId)throws SQLException{
+		Map<String, Object> map = new HashMap<>();
+		map.put("articleId", articleId);
+		map.put("tagId", tagId);
+		DatabaseHelper.insertRecord("articleTag",map);
+		return true;
+	}
+	
+	public static boolean deleteArticleTag(String tagID,String articleID) {
+		return DatabaseHelper.executeUpdate("delete from articletag where tagId=? and articleId=?", tagID,articleID);
 	}
 	
 	public static List<Map<String,Object>> getArticleTag(String aid)throws SQLException{
