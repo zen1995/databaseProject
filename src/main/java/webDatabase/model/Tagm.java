@@ -21,7 +21,15 @@ public class Tagm {
 			return false;
 		}
 	}
-	
+	/*
+	public static boolean deleteTag(String tagName){
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	*/
 	public static List<Map<String,Object>> getArticleTag(String aid)throws SQLException{
 		//List<String> list;
 		DatabaseResult result =DatabaseHelper.query("select * from articletag join tag on articletag.tagId=tag.id where articletag.articleId=?", aid);
