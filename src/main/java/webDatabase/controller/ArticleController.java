@@ -1,5 +1,6 @@
 package webDatabase.controller;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,8 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import webDatabase.model.Articlem;  
+import com.fasterxml.jackson.core.sym.Name;
+
+import webDatabase.database.DatabaseHelper;
+import webDatabase.model.Articlem;
+import webDatabase.util.JsonHelper;  
 @Controller  
 public class ArticleController {  
    
@@ -31,7 +38,7 @@ public class ArticleController {
     		model.addAttribute("info","no article id-"+aid);
     		return "TODO err Page";
     	}
-    	
+
     	return "article/show";
     }
 
@@ -40,16 +47,56 @@ public class ArticleController {
 		return "/article/byuser";
 	}
 	
-    @RequestMapping("/article/search")
+    @RequestMapping(value = "/article/search")
     public String search(HttpServletRequest request,Model model)throws SQLException{
     	String queryType = request.getParameter("type");
     	String string = request.getParameter("value");
     	List<Map<String,Object>> list = Articlem.search(queryType,string);
     	model.addAttribute("articles",list);
     	if(list == null){
+
     		model.addAttribute("info","invalid paramer-"+queryType);
     		return "TODO err Page";    		
     	}
     	return "article/result";
+    }
+    
+    @RequestMapping(value = "/article/add",method = RequestMethod.GET)
+    public String addArticlePage(HttpServletRequest request,Model model)throws SQLException{
+    	return "TODO";
+    }
+    @RequestMapping(value = "/article/add",method = RequestMethod.POST)
+    @ResponseBody
+    public String addArticle(HttpServletRequest request,Model model)throws SQLException{
+    	String title = request.getParameter("title");
+    	String content = request.getParameter("content");
+    	Map<String,Object> user = (Map<String, Object>)request.getSession().getAttribute("user");
+    	if((boolean)user.get("status") == true){
+    		Map<String,Object> map = new HashMap<>();
+    		map.put("title", title);
+    		map.put("content",content);
+    		map.put("publisherUser", user.get("id"));
+    		Articlem.insertArticle(map);
+    		
+    		Map<String,Object> map2 = new HashMap<>();
+    		map2.put("status", true);
+    		return JsonHelper.jsonEncode(map2);
+    	}
+    	else {
+    		Map<String,Object> map2 = new HashMap<>();
+    		map2.put("status", true);
+    		map2.put("info","login status error");
+    		//model.addAttribute("info","login status error");
+    		return JsonHelper.jsonEncode(map2);    			
+		}
+    }
+    @RequestMapping(value = "/article/tag/add")
+    @ResponseBody
+    public String addTag(HttpServletRequest request,Model model)throws SQLException{
+    	String tag = request.getParameter("tagName");
+    	boolean r = Articlem.addTag(tag);
+    	HashMap<String,Object> map = new HashMap<>();
+    	map.put("status",r);
+    	return JsonHelper.jsonEncode(map);
     }
 }  
