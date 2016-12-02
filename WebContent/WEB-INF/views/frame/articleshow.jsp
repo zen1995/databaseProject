@@ -16,7 +16,7 @@
                             </h5>
                         </a>
                         <span ng-bind = "'publishTime: ' +  (article.time | articleDate)" class="col s12 m4 offset-m2 grey-text">
-                        	time??
+                        	time:<c:out value = "${article.timeStr }"></c:out>
                         </span>
                         <span ng-bind = "'author: ' + article.publisher.userName" class="col s12 m4 grey-text">
                         	user:<c:out value = "${article.publishUser}"></c:out>

@@ -419,6 +419,23 @@ public class DatabaseHelper {
 		return result;
 	}
 	
+	public static boolean executeUpdate(String sql,Object ...args){
+		try {
+			Connection connection = DBConnection.getConnection();
+			PreparedStatement statement = connection.prepareStatement(sql);
+			for(int i=0;i < args.length;i++){
+				statement.setObject(i+1,args[i]);
+			}
+			statement.executeUpdate();
+			statement.close();
+			connection.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+		return true;
+	}
+	
 	// public static insertColumn(String tabeName,String name,){
 	//
 	// }

@@ -20,7 +20,7 @@ public class DBConnection {
 	static public final String preUrl = "jdbc:mysql://localhost:3306/";
 	static public final String postURL = "?useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true";
 	static private String user = "root";
-	static private String password = "621159";
+	static private String password = "123456";
 	public static  final String databaseName = "databaseproject";
 	private static Logger logger = LoggerFactory.getLogger(DBConnection.class);
 	/* 初始�? */

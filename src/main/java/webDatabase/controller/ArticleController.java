@@ -40,6 +40,7 @@ public class ArticleController {
     		return "other/errPage";
     	}
     	model.addAttribute("article", map);
+    	model.addAttribute("tag",Tagm.getArticleTag(aid));
     	return "article/show";
     }
 
@@ -61,11 +62,11 @@ public class ArticleController {
     	return "article/result";
     }
     
-    @RequestMapping(value = "/article/add",method = RequestMethod.GET)
+    @RequestMapping(value = "/article/addPage",method = RequestMethod.GET)
     public String addArticlePage(HttpServletRequest request,Model model)throws SQLException{
     	return "/article/add";
     }
-    @RequestMapping(value = "/article/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/article/add")
     @ResponseBody
     public String addArticle(HttpServletRequest request,Model model)throws SQLException{
     	String title = request.getParameter("title");
@@ -91,16 +92,8 @@ public class ArticleController {
 		}
     }
     
-   
-    @RequestMapping(value = "/article/tag/add")
-    @ResponseBody
-    public String addTag(HttpServletRequest request,Model model)throws SQLException{
-    	String tag = request.getParameter("tagName");
-    	boolean r = Tagm.addTag(tag);
-    	HashMap<String,Object> map = new HashMap<>();
-    	map.put("status",r);
-    	return JsonHelper.jsonEncode(map);
-    }
+    
+
     
     
 }  
