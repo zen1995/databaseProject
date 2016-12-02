@@ -48,8 +48,13 @@ public class TableCreator {
 	}
 
 	private static void createArticleTable() throws SQLException {
-		String sql = "create table article(" + "id INT NOT NULL AUTO_INCREMENT,\n" + "publishUser int,\n"
-				+ "title varchar(50),\n" + "content text,\n" + "likeCount int NOT NULL DEFAULT '0' ,\n"
+		String sql = "create table article(" 
+	+ "id INT NOT NULL AUTO_INCREMENT,\n" 
+				+ "publishUser int,\n"
+				+ "title varchar(50),\n" 
+				+ "content text,\n" 
+				+ "likeCount int NOT NULL DEFAULT '0' ,\n"
+				+ "time varchar(50) not null default '0',\n"
 				+ "PRIMARY KEY (`id`),\n" + "unique(id)," + "foreign key(publishUser) references user(id)\n"
 				+ ") ENGINE = InnoDB;";
 		DatabaseHelper.executeSql(sql);
@@ -93,6 +98,7 @@ public class TableCreator {
 				content += "content-" + i + " ";
 			}
 			article.put("content", content);
+			article.put("time", System.currentTimeMillis());
 			DatabaseHelper.insertRecord("article", article);
 		}
 	}
@@ -221,6 +227,7 @@ public class TableCreator {
 
 	public static void main(String[] args) throws Exception {
 		DBConnection.dropDatabase();
+		init();
 	}
 
 }

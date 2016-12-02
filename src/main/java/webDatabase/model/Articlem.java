@@ -2,7 +2,9 @@ package webDatabase.model;
 
 import java.awt.Paint;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +17,7 @@ import webDatabase.database.Pair;
 public class Articlem {
 	public static List<Map<String, Object>> getAllArticle() throws SQLException {
 		DatabaseResult result = DatabaseHelper.search("article");
-		return result.getData();
+		return convertArticle(result.getData());
 	}
 
 	public static List<Map<String, Object>> getAllArticle(String byType) throws SQLException {
@@ -26,7 +28,7 @@ public class Articlem {
 		} else {
 			result = DatabaseHelper.search("article", new ArrayList<>(), "id", "desc");
 		}
-		return result.getData();
+		return convertArticle(result.getData());
 	}
 
 
@@ -35,6 +37,7 @@ public class Articlem {
 		List<Pair> list = new ArrayList<>();
 		list.add(new Pair("id", aid));
 		DatabaseResult result = DatabaseHelper.search("article", list);
+		convertArticle(result.getData());
 		if (result.getData().isEmpty()) {
 			return null;
 		} else {
@@ -56,25 +59,27 @@ public class Articlem {
 		else {
 			return null;
 		}
-		return result.getData();
+		return convertArticle(result.getData());
 	}
 	
 	public static void insertArticle(Map<String,Object> article)throws SQLException{
+		article.put("time",String.valueOf(System.currentTimeMillis()));
 		DatabaseHelper.insertRecord("article", article);
 		
 		//return true;
 	}
 	
-	public static boolean addTag(String tagName){
-		Map<String, Object> map = new HashMap<>();
-		map.put("tagName",tagName);
-		try {
-			DatabaseHelper.insertRecord("tag", map);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
+
+	
+	private static List<Map<String, Object>> convertArticle(List<Map<String, Object>> list){
+		for(Map<String, Object> map : list){
+			long t = Long.valueOf((String)map.get("time"));
+	        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	        Date date = new Date(t);
+	        String res = simpleDateFormat.format(date);
+			map.put("timeStr", res);
 		}
+		return list;
 	}
 	
 	public static void main(String[] args)throws Exception {
