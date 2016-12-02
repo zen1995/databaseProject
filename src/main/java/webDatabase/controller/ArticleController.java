@@ -38,7 +38,8 @@ public class ArticleController {
     		model.addAttribute("info","no article id-"+aid);
     		return "TODO err Page";
     	}
-    	return "TODO";
+    	model.addAttribute("article", map);
+    	return "article/show";
     }
 
 	@RequestMapping(value = "/article/byuser")
