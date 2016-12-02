@@ -31,7 +31,8 @@ public class ArticleController {
     		model.addAttribute("info","no article id-"+aid);
     		return "TODO err Page";
     	}
-    	return "TODO";
+    	
+    	return "article/show";
     }
 
 	@RequestMapping(value = "/article/byuser")
@@ -45,10 +46,10 @@ public class ArticleController {
     	String string = request.getParameter("value");
     	List<Map<String,Object>> list = Articlem.search(queryType,string);
     	model.addAttribute("articles",list);
-    	if(list === null){
+    	if(list == null){
     		model.addAttribute("info","invalid paramer-"+queryType);
     		return "TODO err Page";    		
     	}
-    	return "TODO";
+    	return "article/result";
     }
 }  

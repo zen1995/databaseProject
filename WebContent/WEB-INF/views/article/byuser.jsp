@@ -5,13 +5,16 @@
        <div class="collapsible-header"><i class="mdi-social-mood"></i>By User Name</div>
        	<div class="collapsible-body">
        		<div class="row" style="margin-left:20%">
-		        <div class="input-field col s6">
-		          <input id="userName" type="text" class="validate">
-		          <label for="userName">User Name</label>
-		        </div>
-		        <div class="input-field col s6">
-		          <a class="waves-effect waves-light blue btn"><i class="mdi-file-cloud left"></i>Search</a>
-		        </div>
+       			<form action="/article/search">
+			        <div class="input-field col s6">
+			        	<input name="type" value="name" style="display:none">
+						<input id="userName" name="value" type="text" class="validate">
+						<label for="userName">User Name</label>
+			        </div>
+			        <div class="input-field col s6">
+			            <button class="waves-effect waves-light blue btn" type="submit"><i class="mdi-file-cloud left"></i>Search</button>
+			        </div>
+			    </form>
 	      	</div>
 		</div>
      </li>
@@ -19,13 +22,16 @@
        <div class="collapsible-header"><i class="mdi-social-people-outline"></i>By Article Tag</div>
        	<div class="collapsible-body">
        		<div class="row" style="margin-left:20%">
+       		<form action="/article/search">
 		        <div class="input-field col s6">
-		        <input id="ArtTag" type="text" class="validate">
+		        <input name="type" value="tag" style="display:none">
+		        <input name="value" id="ArtTag" type="text" class="validate">
 		        <label for="ArtTag">Article Tag</label>
 		        </div>
 		        <div class="input-field col s6">
-		          <a class="waves-effect waves-light blue btn"><i class="mdi-file-cloud left"></i>Search</a>
+		          <button class="waves-effect waves-light blue btn" type="submit"><i class="mdi-file-cloud left" ></i>Search</button>
 		        </div>
+			</form>
 	      	</div>
 		</div>
      </li>
