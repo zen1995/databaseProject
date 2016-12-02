@@ -17,6 +17,11 @@ import webDatabase.database.DatabaseResult;
 
 public class Tagm {
 
+	public static List<Map<String,Object>> getAllTag()throws SQLException{
+		return DatabaseHelper.query("select * from tag").getData();
+		
+	}
+	
 	public static boolean addTag(String tagName){
 		Map<String, Object> map = new HashMap<>();
 		map.put("tagName",tagName);

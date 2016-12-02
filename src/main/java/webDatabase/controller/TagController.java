@@ -2,6 +2,8 @@ package webDatabase.controller;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,7 +17,7 @@ import webDatabase.util.JsonHelper;
 
 @Controller
 public class TagController {
-    @RequestMapping(value = "/article/tag/add")
+    @RequestMapping(value = "/tag/add")
     @ResponseBody
     public String addTag(HttpServletRequest request,Model model)throws SQLException{
     	String tag = request.getParameter("tagName");
@@ -23,5 +25,12 @@ public class TagController {
     	HashMap<String,Object> map = new HashMap<>();
     	map.put("status",r);
     	return JsonHelper.jsonEncode(map);
+    }
+    
+    @RequestMapping(value = "tag")
+    public String showTagsPage(Model model)throws SQLException{
+    	List<Map<String,Object>> tags = Tagm.getAllTag();
+    	model.addAttribute("tags",tags);
+    	return "tag/showTags";
     }
 }
