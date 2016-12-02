@@ -29,17 +29,7 @@ public class Tagm {
 		}
 	}
 	
-	public static boolean deleteTag(String tagName){
-		try {
-			Connection connection = DBConnection.getConnection();
-			Statement statement = connection.createStatement();
-			
-			statement.close();
-			connection.close();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
+
 	
 	public static List<Map<String,Object>> getArticleTag(String aid)throws SQLException{
 		//List<String> list;
