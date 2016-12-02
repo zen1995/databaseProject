@@ -76,7 +76,7 @@ public class ArticleController {
     		Map<String,Object> map = new HashMap<>();
     		map.put("title", title);
     		map.put("content",content);
-    		map.put("publisherUser", user.get("id"));
+    		map.put("publishUser", user.get("id"));
     		Articlem.insertArticle(map);
     		
     		Map<String,Object> map2 = new HashMap<>();
