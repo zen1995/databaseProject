@@ -18,6 +18,7 @@ import com.fasterxml.jackson.core.sym.Name;
 
 import webDatabase.database.DatabaseHelper;
 import webDatabase.model.Articlem;
+import webDatabase.model.Tagm;
 import webDatabase.util.JsonHelper;  
 @Controller  
 public class ArticleController {  
@@ -36,7 +37,7 @@ public class ArticleController {
     	Map<String,Object> map = Articlem.getSingleArticle(aid);
     	if(map == null){
     		model.addAttribute("info","no article id-"+aid);
-    		return "TODO err Page";
+    		return "other/errPage";
     	}
     	model.addAttribute("article", map);
     	return "article/show";
@@ -55,14 +56,14 @@ public class ArticleController {
     	model.addAttribute("articles",list);
     	if(list ==null){
     		model.addAttribute("info","invalid paramer-"+queryType);
-    		return "TODO err Page";    		
+    		return "other/errPage";    		
     	}
-    	return "TODO";
+    	return "article/result";
     }
     
     @RequestMapping(value = "/article/add",method = RequestMethod.GET)
     public String addArticlePage(HttpServletRequest request,Model model)throws SQLException{
-    	return "TODO";
+    	return "/article/add";
     }
     @RequestMapping(value = "/article/add",method = RequestMethod.POST)
     @ResponseBody
@@ -89,13 +90,17 @@ public class ArticleController {
     		return JsonHelper.jsonEncode(map2);    			
 		}
     }
+    
+   
     @RequestMapping(value = "/article/tag/add")
     @ResponseBody
     public String addTag(HttpServletRequest request,Model model)throws SQLException{
     	String tag = request.getParameter("tagName");
-    	boolean r = Articlem.addTag(tag);
+    	boolean r = Tagm.addTag(tag);
     	HashMap<String,Object> map = new HashMap<>();
     	map.put("status",r);
     	return JsonHelper.jsonEncode(map);
     }
+    
+    
 }  
