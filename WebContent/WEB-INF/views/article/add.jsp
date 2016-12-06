@@ -7,17 +7,19 @@
     <form class="col m6 offset-m3 s12">
       <div class="row">
         <div class="input-field col s6">
-          <input id="header" type="text" name="header" length="10">
-          <label for="header">标题</label>
+          <input id="title" type="text" name="title" length="10">
+          <label for="title">标题</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <textarea id="textarea1" name="content" class="materialize-textarea" length="1200"></textarea>
-          <label for="textarea1">内容</label>
+          <textarea id="content" name="content" class="materialize-textarea" length="1200"></textarea>
+          <label for="content">内容</label>
         </div>
       </div>
-      <div class="row center"><a class="waves-effect waves-light btn light-blue lighten-1" type="submit">提交</a></div>
+      <div class="row center">
+      <a class="waves-effect waves-light btn light-blue 
+      lighten-1" id="submit" onClick="addPage('/article/add')">提交</a></div>
     </form>
 </div>
 

@@ -20,11 +20,16 @@ time=1480648667743, title=article title-0, content=content-0 }  -->
                     </div>
             </div>
             <div class="card-action">
-                <a ng-href="{{'/article/show/'+article.id}}/#" id = "like"><i class="mdi-action-favorite-outline"></i>like</a>
+                <a href="#" id="like" onClick="likeArticle()"><i class="mdi-action-favorite-outline" id="likeheart"></i>like</a>
             </div>
         </div>
     </div>
 </div>
 <!-- 添加点赞之后的切换红心状态的JSP -->
+<script>
+
+</script>
+
+
 
 <%@include file="/WEB-INF/views/frame/footer.jsp"%>

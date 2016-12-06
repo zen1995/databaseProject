@@ -45,7 +45,7 @@
 					<ul class="right hide-on-med-and-down">
 						<!--hide-on-med-and-down  right hide-on-small-only-->
 						<c:if test="${user.status == true}">
-							<li><a id="loginStatus" href="/user"><c:out value="${user.name}"></c:out></a></li>
+							<li><a id="loginStatus" href="/user/"><c:out value="${user.name}"></c:out></a></li>
 						</c:if>
 						<c:if test="${user.status == false}">
 							<li><a id="registerBtn" href="/user/register">register</a></li>
@@ -59,7 +59,7 @@
 					</ul>
 					<ul class="side-nav" id="mobile-demo">
 						<c:if test="${user.status == true}">
-							<li><a href="/user"><c:out value="${user.name }"></c:out></a></li>
+							<li><a href="/user/"><c:out value="${user.name }"></c:out></a></li>
 						</c:if>
 						<c:if test="${user.status == false}">
 							<li><a href="/user/register">register</a></li>
@@ -73,7 +73,7 @@
 				    	<ul id="editself-p" class="dropdown-content">
 						<li><a href="/article/addPage" class='blue-text'>纂写文章</a></li>
 			      		<li class="divider" ></li>
-			      		<li><a href="/user" class='blue-text'>个人信息</a></li>
+			      		<li><a href="/user/" class='blue-text'>个人信息</a></li>
 						</ul>
     					<li><a class="dropdown-button" href="#!" data-activates="editself-p">
     					个人操作<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
@@ -112,7 +112,7 @@
 				    	<ul id="editself" class="dropdown-content">
 						<li><a href="/article/addPage" class='blue-text'>纂写文章</a></li>
 			      		<li class="divider" ></li>
-			      		<li><a href="/user" class='blue-text'>个人信息</a></li>
+			      		<li><a href="/user/" class='blue-text'>个人信息</a></li>
 						</ul>
     					<li><a class="dropdown-button" href="#!" data-activates="editself">
     					个人操作<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
