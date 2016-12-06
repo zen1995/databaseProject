@@ -29,3 +29,10 @@ function login(){
     		});
     $.ajax(ajax);
 }
+
+function addPage(){
+	var head = document.getElementById();
+	var content = document.getElementById();
+}
+
+

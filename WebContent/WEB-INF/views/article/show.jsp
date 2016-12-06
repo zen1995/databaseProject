@@ -3,7 +3,7 @@
 <!-- publishUser=5, likeCount=0, timeStr=2016-12-02 11:17, id=1, 
 time=1480648667743, title=article title-0, content=content-0 }  -->
 <div class="container" ><!---->
-	<!-- Dropdown Trigger -->
+	<!-- 显示一篇文章 -->
     <div class="row" id = "frame" ><!---->    
         <div class="col m8 offset-m2 s12"  ><!--id = "standard"-->
             <div class="card hoverable" >
@@ -13,18 +13,18 @@ time=1480648667743, title=article title-0, content=content-0 }  -->
                         <p class="grey-text">
                         <span class="green-text">time:</span><c:out value="${article.timeStr }"></c:out>
                         &nbsp;&nbsp;
-                        <span class="green-text">user:</span><c:out value="${article.publishUser }"></c:out>
+                        <span class="green-text">user:</span><c:out value="${article.name }"></c:out>
                         </p>
                         <div class="divider"></div>
                         <p style="margin-top: 10px"><c:out value="${article.content }"></c:out></p>
                     </div>
             </div>
             <div class="card-action">
-                <a ng-href="{{'/article/show/'+article.id}}" id = "detailLink">view detail</a>
+                <a ng-href="{{'/article/show/'+article.id}}/#" id = "like"><i class="mdi-action-favorite-outline"></i>like</a>
             </div>
         </div>
     </div>
 </div>
-
+<!-- 添加点赞之后的切换红心状态的JSP -->
 
 <%@include file="/WEB-INF/views/frame/footer.jsp"%>

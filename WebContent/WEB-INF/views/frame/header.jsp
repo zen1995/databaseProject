@@ -45,7 +45,7 @@
 					<ul class="right hide-on-med-and-down">
 						<!--hide-on-med-and-down  right hide-on-small-only-->
 						<c:if test="${user.status == true}">
-							<li><a id="loginStatus" href="#"><c:out value="${user.name}"></c:out></a></li>
+							<li><a id="loginStatus" href="/user"><c:out value="${user.name}"></c:out></a></li>
 						</c:if>
 						<c:if test="${user.status == false}">
 							<li><a id="registerBtn" href="/user/register">register</a></li>
@@ -59,11 +59,25 @@
 					</ul>
 					<ul class="side-nav" id="mobile-demo">
 						<c:if test="${user.status == true}">
-							<li><a href="#"></a></li>
+							<li><a href="/user"><c:out value="${user.name }"></c:out></a></li>
 						</c:if>
 						<c:if test="${user.status == false}">
 							<li><a href="/user/register">register</a></li>
 							<li><a href="/user/login">sign in</a></li>
+						</c:if>	
+				    	<c:if test="${user.status == true}">
+							<li><a href="#">sign out</a></li>
+							<!--onclick="signOut()"-->
+						</c:if>
+						<c:if test="${user.status == true}">
+				    	<ul id="editself-p" class="dropdown-content">
+						<li><a href="/article/addPage" class='blue-text'>纂写文章</a></li>
+			      		<li class="divider" ></li>
+			      		<li><a href="/user" class='blue-text'>个人信息</a></li>
+						</ul>
+    					<li><a class="dropdown-button" href="#!" data-activates="editself-p">
+    					个人操作<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+						</c:if>
 							<ul id="articleSearch-p" class="dropdown-content">
 							<li><a href="/?showType=bylike" class='black-text'>点赞数</a></li>
 			      			<li class="divider" ></li>
@@ -71,22 +85,19 @@
 			      			<li><a href="/article/byuser" class='black-text'>按用户</a></li>
 							</ul>
      						<li><a class="dropdown-button" href="#!" data-activates="articleSearch-p">
-     						Article<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+     						查看文章<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 							<ul id="userSearch-p" class="dropdown-content">
 							<li class="divider" ></li>
 			     			<li><a href="/?showType=bytime" class='black-text'>新加入</a></li>
 			     			<li><a href="/searchUser/exact" class='black-text'>精确查找</a></li>
 							</ul>
      						<li><a class="dropdown-button" href="#!" data-activates="userSearch-p">
-     						User<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+     						查找用户<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 							
 							<!-- <li><a href="footer">页脚</a></li>
 							<li><a href="mobile">手机</a></li> -->
-						</c:if>
-						<c:if test="${user.status == true}">
-							<li><a href="#">sign out</a></li>
-							<!--onclick="signOut()"-->
-						</c:if>
+						
+						
 					</ul>
 				</div>
 			</nav>
@@ -97,6 +108,19 @@
 			    <div class="nav-wrapper" style="margin-top:50px">
 			    	<a href="#" data-activates="mobile-demo" class="button-collapse"></a>
 				    <ul class="hide-on-med-and-down">
+				    	<c:if test="${user.status == true}">
+				    	<ul id="editself" class="dropdown-content">
+						<li><a href="/article/addPage" class='blue-text'>纂写文章</a></li>
+			      		<li class="divider" ></li>
+			      		<li><a href="/user" class='blue-text'>个人信息</a></li>
+						</ul>
+    					<li><a class="dropdown-button" href="#!" data-activates="editself">
+    					个人操作<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+						</c:if>
+				    	
+				    	
+				    	
+				    	
 			      		<ul id="articleSearch" class="dropdown-content">
 						<li><a href="/?showType=bylike" class='blue-text'>点赞数</a></li>
 			      		<li class="divider" ></li>
@@ -104,14 +128,14 @@
 			      		<li><a href="/article/byuser" class='blue-text'>按用户</a></li>
 						</ul>
     					<li><a class="dropdown-button" href="#!" data-activates="articleSearch">
-    					Article<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+    					查看文章<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 						<ul id="userSearch" class="dropdown-content">
 						<li class="divider" ></li>
 			     		<li><a href="/?showType=bytime" class='blue-text'>新加入</a></li>
 			     		<li><a href="/searchUser/exact" class='blue-text'>精确查找</a></li>
 						</ul>
     					<li><a class="dropdown-button" href="#!" data-activates="userSearch">
-    					User<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+    					查找用户<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 				   </ul>
 				    
 			    </div>

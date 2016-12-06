@@ -10,5 +10,4 @@
 <%@include file="/WEB-INF/views/frame/header.jsp"%>
 
 <%@include file="/WEB-INF/views/frame/articleshow.jsp" %>
-测试 v2016.8.19.1
 <%@include file="/WEB-INF/views/frame/footer.jsp"%>

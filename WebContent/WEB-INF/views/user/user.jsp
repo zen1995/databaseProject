@@ -2,6 +2,6 @@
 <%@include file="/WEB-INF/views/frame/header.jsp"%>
 
 
-
+<%@include file="/WEB-INF/views/frame/articleshow.jsp" %>
 
 <%@include file="/WEB-INF/views/frame/footer.jsp"%>
