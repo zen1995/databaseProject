@@ -32,7 +32,7 @@ public class Articlem {
 	}
 
 	public static List<Map<String, Object>> getUserArticle(String uid)throws SQLException{
-		return DatabaseHelper.query("select * articleview where publishUser=?", uid).getData();
+		return DatabaseHelper.query("select * from articleview where publishUser=?", uid).getData();
 	}
 	
 	
@@ -93,8 +93,6 @@ public class Articlem {
 	}
 	
 	public static void main(String[] args)throws Exception {
-		Object object = search("name","userName-1");
-		object = search("tag", "tag-0");
-		System.out.println(object);
+		getUserArticle("1");
 	}
 }
