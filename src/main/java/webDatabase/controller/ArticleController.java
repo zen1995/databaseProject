@@ -22,7 +22,7 @@ import webDatabase.model.Tagm;
 import webDatabase.util.JsonHelper;  
 @Controller  
 public class ArticleController {  
-   
+    
     @RequestMapping(value="/")  
     public String index_jsp(HttpServletRequest request,Model model)throws Exception{  
         String type = request.getParameter("showType");
