@@ -91,9 +91,45 @@ public class ArticleController {
     		return JsonHelper.jsonEncode(map2);    			
 		}
     }
-    
-    
+    @RequestMapping(value = "/article/like")
+    @ResponseBody
+    public String likeArticle(HttpServletRequest request)throws SQLException{
+    	Map<String,Object> user = (Map<String, Object>)request.getSession().getAttribute("user");
+    	if((boolean)user.get("status") == true){
+    		String aid = request.getParameter("aid");
+    		int uid = (int)user.get("id");
+    		String command = request.getParameter("command");
+    		Map<String,Object> map2 = new HashMap<>();
+    		if(command.equals("like")){
+    			map2 =Articlem.likeArticle(uid, aid);
+    		}
+    		else if(command.equals("unlike")){
+    			map2 = Articlem.unlikeArticle(uid, aid);
+    		}
+    		else{
+    			map2.put("status",false);
+    		}
+    		return JsonHelper.jsonEncode(map2);
+    	}
+    	else{
+    		Map<String,Object> map2 = new HashMap<>();
+    		map2.put("status", true);
+    		map2.put("info","login status error");
+    		//model.addAttribute("info","login status error");
+    		return JsonHelper.jsonEncode(map2);    
+    	}
+    }
 
+    @RequestMapping(value = "/article/delete")
+    @ResponseBody
+    public String deleteArticle(HttpServletRequest request)throws SQLException{
+    	Map<String,Object> user = (Map<String, Object>)request.getSession().getAttribute("user");
+    	Map<String, Object> map = Articlem.deleteArticle((int)user.get("id"),request.getParameter("aid"));
+    	return JsonHelper.jsonEncode(map);
+    }
+
+     
+    
     
     
 }  

@@ -73,8 +73,23 @@ public class Articlem {
 		//return true;
 	}
 	
-	public static boolean deleteArticle(String aid)throws SQLException{
-		return DatabaseHelper.executeUpdate("delete form article where id=?", aid);
+	public static Map<String,Object> deleteArticle(int uid,String aid)throws SQLException{
+		Map<String,Object> map = new HashMap<>();
+		List<Map<String, Object>> result = DatabaseHelper.query("select * from article where id=?",aid).getData();
+		if(result.isEmpty()){
+			map.put("status",false);
+			map.put("info","article not exist");
+			return map;
+		}
+		Map<String,Object> article = result.get(0);
+		if(!article.get("publishUser").equals(uid)){
+			map.put("status",false);
+			map.put("info","no authorized");
+			return map;
+		}
+		DatabaseHelper.executeUpdate("delete from article where id=?", aid);
+		map.put("status",true);
+		return map;
 	}
 	
 	public static void updateArticle(String aid,Map<String,Object> article)throws SQLException{
@@ -92,7 +107,41 @@ public class Articlem {
 		return list;
 	}
 	
+	public static Map<String,Object> likeArticle(int uid,String aid){
+		Map<String,Object> ret = new HashMap<>();
+		try {
+			Map<String, Object> map = new HashMap<>();
+			map.put("userId",uid);
+			map.put("articleId", aid);
+			DatabaseHelper.insertRecord("articlelike",map);
+			updateArticleLike(aid);
+			ret.put("status", true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ret.put("status",false);
+		}
+		return ret;
+	}
+	
+	public static Map<String,Object> unlikeArticle(int uid,String aid){
+		Map<String,Object> ret = new HashMap<>();
+		try {
+			ret.put("status",true);
+			DatabaseHelper.executeUpdate("delete from articlelike where articleId=? and userId=?",aid,uid);
+			updateArticleLike(aid);
+		} catch (Exception e) {
+			ret.put("status",false);
+		}
+		return ret;
+	}
+	
+	private static void updateArticleLike(String aid)throws SQLException{
+		DatabaseHelper.executeUpdate("update article set likeCount= (select count(*) from articlelike  where articleId=?)"
+				+ " where article.id=?",aid,aid);
+	}
+	
+	
 	public static void main(String[] args)throws Exception {
-		getUserArticle("1");
+		System.out.println(getSingleArticle("3"));
 	}
 }
