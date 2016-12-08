@@ -140,8 +140,25 @@ public class Articlem {
 				+ " where article.id=?",aid,aid);
 	}
 	
+	public static Map<String,Object> addArticleTag(String aid,String tid)throws SQLException{
+		Map<String, Object> ret = new HashMap<>();
+		try {
+			Map<String,Object> map = new HashMap<>();
+			map.put("articleId",aid);
+			map.put("tagId", tid);
+			DatabaseHelper.insertRecord("articletag",map);
+			ret.put("status",true);
+		} catch (Exception e) {
+			ret.put("status",false);
+		}
+		return ret;
+	}
+	
 	
 	public static void main(String[] args)throws Exception {
 		System.out.println(getSingleArticle("3"));
 	}
+	
+	
+	
 }

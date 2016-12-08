@@ -128,7 +128,26 @@ public class ArticleController {
     	return JsonHelper.jsonEncode(map);
     }
 
-     
+    @RequestMapping(value = "/article/addTag")
+    @ResponseBody
+    public String addTag(HttpServletRequest request)throws SQLException{
+    	Map<String,Object> user = (Map<String, Object>)request.getSession().getAttribute("user");
+    	if((boolean)user.get("status") == true){
+    		String aid = request.getParameter("aid");
+    		int uid = (int)user.get("id");
+    		String tid = request.getParameter("tid");
+    		Map<String,Object> map2 = new HashMap<>();
+    		map2 = Articlem.addArticleTag(aid, tid);
+    		return JsonHelper.jsonEncode(map2);
+    	}
+    	else{
+    		Map<String,Object> map2 = new HashMap<>();
+    		map2.put("status", true);
+    		map2.put("info","login status error");
+    		//model.addAttribute("info","login status error");
+    		return JsonHelper.jsonEncode(map2);    
+    	}
+    } 
     
     
     

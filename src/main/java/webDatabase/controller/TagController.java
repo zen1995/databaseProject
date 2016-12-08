@@ -27,10 +27,12 @@ public class TagController {
     	return JsonHelper.jsonEncode(map);
     }
     
-    @RequestMapping(value = "tag")
+    @RequestMapping(value = "/tag/show")
     public String showTagsPage(Model model)throws SQLException{
     	List<Map<String,Object>> tags = Tagm.getAllTag();
     	model.addAttribute("tags",tags);
     	return "tag/showTags";
     }
+    
+    
 }
