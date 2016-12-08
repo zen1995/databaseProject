@@ -63,8 +63,9 @@ public class TableCreator {
 
 	private static void createArticleLikeTable() throws SQLException {
 		String sql = "create table articleLike(" + "id INT NOT NULL AUTO_INCREMENT,\n" + "userId int,\n"
-				+ "articleId int,\n" + "PRIMARY KEY (`id`),\n" + "unique(id),"
-				+ "foreign key(userId) references user(id),\n" + "foreign key(articleId) references article(id)"
+				+ "articleId int,\n" + "PRIMARY KEY (`id`),\n" + "unique(id),"+"unique(articleId,userId),"
+				+ "foreign key(userId) references user(id),\n" 
+				+ "CONSTRAINT foreign key(articleId) references article(id) ON  DELETE CASCADE"
 				+ ") ENGINE = InnoDB;";
 		DatabaseHelper.executeSql(sql);
 	}
