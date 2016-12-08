@@ -19,7 +19,7 @@
       </div>
       <div class="row center">
       <a class="waves-effect waves-light btn light-blue 
-      lighten-1" id="submit" onClick="addPage('/article/add')">提交</a></div>
+      lighten-1" id="submit" onClick="addPage()">提交</a></div>
     </form>
 </div>
 

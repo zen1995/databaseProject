@@ -11,15 +11,17 @@ function login(){
     			url:myurl,
     			data:data,
     			success:function(data){//alert(data);
-    	            console.log(data);
+    	            //console.log(data);
     	            data=eval('('+data+')');
     	            if(data.status == true){
-    	                alert("登陆成功！");
+    	                alert("登陆成功！"); 
     	                if(window.location.pathname = "/user/login"){
-    	                    window.location.href = "/user";
+    	                	window.location.href = "/user/";
+    	                    
     	                }
     	                else{
     	                    window.location.reload();
+    	                    
     	                }
     	            }
     	            else{
@@ -29,20 +31,39 @@ function login(){
     		});
     $.ajax(ajax);
 }
-
-function addPage(URL){
-	var title = document.getElementById("title");
-	var content = document.getElementById("content");
-	var temp = document.createElement("form");
-    temp.action = URL;
-    temp.method = "post";
-    temp.style.display = "none";
-  
-    temp.appendChild(title);
-    temp.appendChild(content);
-    document.body.appendChild(temp);        
-    temp.submit();        
-    return temp; 
+///article/add
+/*var temp = document.createElement("form");
+temp.action = URL;
+temp.method = "post";
+temp.style.display = "none";     
+temp.appendChild(title);
+temp.appendChild(content);
+document.body.appendChild(temp);        
+temp.submit();
+return temp; */
+function addPage(){
+	//var title = document.getElementById("title");
+	var title = $("title").val();
+	//var content = document.getElementById("content");
+	var content = $("content").val();
+	var myurl = "article/add";
+	var data = {Title:title, Content:content};
+	var ajax = $.extent({},config.ajaxConfig,
+    		{
+		url:myurl,
+		data:data,
+		success:function(data){
+            data=eval('('+data+')');
+            if(data.status == true){
+                alert("发表成功"); 
+                window.location.href = "/user/"; 
+            }
+            else{
+            	alert("发表失败");
+            }
+		}
+	});
+$.ajax(ajax);
 }
 
 function likeArticle(){
@@ -52,7 +73,7 @@ function likeArticle(){
 		likebt.className = "mdi-action-favorite";
 	}
 	else{
-		alert("您已经点过赞啦！！");
+		likebt.className = "mdi-action-favorite-outline"
 	}
 	
 }

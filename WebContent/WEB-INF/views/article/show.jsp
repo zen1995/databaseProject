@@ -20,7 +20,8 @@ time=1480648667743, title=article title-0, content=content-0 }  -->
                     </div>
             </div>
             <div class="card-action">
-                <a href="#" id="like" onClick="likeArticle()"><i class="mdi-action-favorite-outline" id="likeheart"></i>like</a>
+                <a href="#" id="like" onClick="likeArticle()"><i class="mdi-action-favorite-outline" id="likeheart">
+                </i>like <c:out value="${article.likeCount}"></c:out> </a>
             </div>
         </div>
     </div>

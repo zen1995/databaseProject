@@ -19,7 +19,7 @@
                         	time:<c:out value = "${article.timeStr }"></c:out>
                         </span>
                         <span ng-bind = "'author: ' + article.publisher.userName" class="col s12 m4 grey-text">
-                        	user:<c:out value = "${article.publishUser}"></c:out>
+                        	user:<c:out value = "${article.name}"></c:out>
                         </span>
                     </div>
                     <div class="divider"></div>
