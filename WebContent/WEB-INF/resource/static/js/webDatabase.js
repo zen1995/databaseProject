@@ -48,34 +48,74 @@ function addPage(){
 	var content = $("content").val();
 	var myurl = "article/add";
 	var data = {Title:title, Content:content};
-	var ajax = $.extent({},config.ajaxConfig,
+	var ajax = $.extend({},config.ajaxConfig,
     		{
 		url:myurl,
 		data:data,
 		success:function(data){
             data=eval('('+data+')');
             if(data.status == true){
-                alert("发表成功"); 
-                window.location.href = "/user/"; 
+            	window.location.href = "/user/";
             }
             else{
-            	alert("发表失败");
             }
 		}
 	});
 $.ajax(ajax);
 }
 
-function likeArticle(){
+function likeArticle(id){
+	var likenum = $("#likeNum");
 	var likebt = document.getElementById("likeheart");
 	//alert(likebt.className);
 	if(likebt.className == "mdi-action-favorite-outline"){
 		likebt.className = "mdi-action-favorite";
+		var command = "like";
 	}
 	else{
 		likebt.className = "mdi-action-favorite-outline"
+		var command = "unlike";
 	}
-	
+	var data={aid:id, command:command};
+	var ajax = $.extend({},config.ajaxConfig,
+    		{
+		url:"/article/like",
+		data:data,
+		success:function(data){
+            data=eval('('+data+')');
+            //alert(id);
+            if(data.status == true){
+                //window.location.reload();
+            	if(command == "like")
+            		likenum.text(parseInt(likenum.text())+1);
+            	else
+            		likenum.text(parseInt(likenum.text())-1);
+            }
+		}
+	});
+	 
+	$.ajax(ajax);
 }
 
+function articleDelete(id){
+	var data = {id: id};
+	var ajax = $.extend({},config.ajaxConfig,
+    		{
+		url:"/article/delete",
+		data:data,
+		success:function(data){
+            data=eval('('+data+')');
+            alert(id);
+            if(data.status == true){
+            	window.location.reload();
+            }
+            else{
+            }
+		}
+	});
+$.ajax(ajax);
+}
+
+function articleEdit(id){
+}
 

@@ -7,20 +7,34 @@
             <form name="input" action="/user/register" method="POST">
             
                 <div class="input-field">
-                    <label for="userName">user name</label>
-                    <input id = "userName" type="text" name="userName"autocomplete="off" ng-model = "userName"/>
+                    <label for="useraccount">user account</label>
+                    <input id = "useraccount" type="text" name="userAccount"autocomplete="off"/>
                 </div>
                 
                 <div class="input-field">
                     <label for="password" >password</label>
-                    <input id = "password" type="password" name="password" autocomplete="off" ng-model = "password"/>
+                    <input id = "password" type="password" name="password" autocomplete="off"/>
                 </div>
                 <div class="input-field">
                     <label for="password_check" >password repeat</label>
-                    <input id = "password_check" type="password" name="password" autocomplete="off" ng-model = "password"/>
+                    <input id = "password_check" type="password" name="password" autocomplete="off"/>
                 </div>
-                <a class="waves-effect waves-light btn blue white-text" ng-click="checkUserInfo()">检查用户</a>
-                <a class="waves-effect waves-light btn blue white-text" ng-click="insertUser()">注册</a>
+                <div class="input-field">
+                    <label for="username" >user name</label>
+                    <input id = "username" type="text" name="username" autocomplete="off"/>
+                </div>
+                <p>sex:</p>
+				<p>
+				   <input name="sex" type="radio" id="male" />
+				   <label for="male">Red</label>
+				</p>
+				<p>
+				   <input name="sex" type="radio" id="femal" />
+				   <label for="femal">Yellow</label>
+				</p>
+				 
+                <a class="waves-effect waves-light btn blue white-text" onclick="checkUserInfo()">检查用户</a>
+                <a class="waves-effect waves-light btn blue white-text" onclick="insertUser()">注册</a>
             </form>
         </div>
     </div>

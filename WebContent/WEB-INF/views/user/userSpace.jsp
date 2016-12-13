@@ -11,9 +11,14 @@
                                     年龄:<c:out value="${user.age }"></c:out></p>
            <p>个签:<c:out value="${user.note }"></c:out>
          </div>
+         <div class="card-action">
+           <a href="#">修改个人信息</a>
        </div>
+       </div>
+       
      </div>
    </div>
+   <h2>My Article</h2>
 	<table>
 	   	<thead id="tabletitle">
 	      <tr>
@@ -33,10 +38,12 @@
 		           </td>
 		           <td  class="col s12 m4 grey-text"><c:out value = "${article.tag }"></c:out>
 		           </td>
-		           <td> <a href="#">编辑   </a>
+		           <td> <Button class="transparent blue-text"  style="border:none" 
+		           onClick="articleEdit(<c:out value="${article.id }"></c:out>)">编辑   </Button>
 		           </td>
-		           </td>
-		           <td> <a href="#">删除   </a>
+		           
+		           <td> <Button class="transparent blue-text"  style="border:none"
+		           onClick="articleDelete(<c:out value="${article.id }"></c:out>)">删除   </Button>
 		           </td>
 	           </tr>
 	        </c:forEach>
