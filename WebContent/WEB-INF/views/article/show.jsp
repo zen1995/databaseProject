@@ -19,7 +19,6 @@ time=1480648667743, title=article title-0, content=content-0 }  -->
 			         	</c:forEach>
                         </p>
                         <p class="grey-text">
-                        <br>
                         <span class="green-text">time:</span><c:out value="${article.timeStr }"></c:out>
                         &nbsp;&nbsp;
                         <span class="green-text">user:</span><c:out value="${article.name }"></c:out>

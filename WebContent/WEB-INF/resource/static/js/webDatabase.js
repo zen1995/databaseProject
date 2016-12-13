@@ -98,7 +98,7 @@ function likeArticle(id){
 }
 
 function articleDelete(id){
-	var data = {id: id};
+	var data = {aid: id};
 	var ajax = $.extend({},config.ajaxConfig,
     		{
 		url:"/article/delete",
@@ -106,11 +106,12 @@ function articleDelete(id){
 		success:function(data){
             data=eval('('+data+')');
             alert(id);
-            if(data.status == true){
-            	window.location.reload();
+            console.log(data);
+            /*if(data.status == true){
+            	//window.location.reload();
             }
             else{
-            }
+            }*/
 		}
 	});
 $.ajax(ajax);
