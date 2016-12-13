@@ -41,6 +41,8 @@ public class ArticleController {
     	}
     	model.addAttribute("article", map);
     	model.addAttribute("tag",Tagm.getArticleTag(aid));
+    	Map<String,Object> user = (Map<String, Object>)request.getSession().getAttribute("user");
+    	model.addAttribute("canLike",!Articlem.userLikeArticle((int)user.get("id"), aid));
     	return "article/show";
     }
 
@@ -127,6 +129,42 @@ public class ArticleController {
     	Map<String, Object> map = Articlem.deleteArticle((int)user.get("id"),request.getParameter("aid"));
     	return JsonHelper.jsonEncode(map);
     }
+    
+    @RequestMapping(value = "/article/modify")
+    @ResponseBody
+    public String modifyArticle(HttpServletRequest request)throws SQLException{
+    	Map<String,Object> user = (Map<String, Object>)request.getSession().getAttribute("user");
+    	String aid = request.getParameter("aid");
+    	String title = request.getParameter("title");
+    	String content = request.getParameter("content");
+    	Map<String,Object> article = new HashMap<>();
+    	article.put("id", aid);
+    	article.put("title", title);
+    	article.put("content", content);
+    	if((boolean)user.get("status") == false){
+    		Map<String,Object> map = new HashMap<>();
+    		map.put("status", false);
+    		map.put("info", "you are not log in");
+    		return JsonHelper.jsonEncode(map);
+    	}
+    	Map<String, Object> map = Articlem.updateArticle((int)user.get("id"),aid, article);
+    	return JsonHelper.jsonEncode(map);
+    } 
+    
+    @RequestMapping(value = "/article/modifyPage/{aid}")
+    public String modifyArticlePage(HttpServletRequest request,Model model,@PathVariable("aid") String aid)throws SQLException{
+    	Map<String,Object> user = (Map<String, Object>)request.getSession().getAttribute("user");
+    	if((boolean)user.get("status") == false){
+    		model.addAttribute("info","you are not log in");
+    		return "other/errPage";  
+    	}
+    	Map<String, Object> article = Articlem.getSingleArticle(aid);
+    	if((int)article.get("publishUser") != (int)user.get("id")){
+    		model.addAttribute("info","you are not authorized");
+    		return "other/errPage";  
+    	}
+    	return "article/modify";
+    } 
 
     @RequestMapping(value = "/article/addTag")
     @ResponseBody

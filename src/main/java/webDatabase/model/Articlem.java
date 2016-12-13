@@ -92,8 +92,19 @@ public class Articlem {
 		return map;
 	}
 	
-	public static void updateArticle(String aid,Map<String,Object> article)throws SQLException{
-		DatabaseHelper.editRecord("article", Integer.valueOf(aid), article);
+	public static Map<String,Object> updateArticle(int uid,String aid,Map<String,Object> article)throws SQLException{
+		Map<String,Object> ret = new HashMap<>();
+		int r = DatabaseHelper.query("select * from article where id=? and publishUser=?",aid,uid).getData().size();
+		if(r == 0){
+			ret.put("status", "false");
+			ret.put("info", "not signed in or aid incorrect");
+			return ret;
+		}
+		else{
+			DatabaseHelper.editRecord("article", Integer.valueOf(aid), article);
+			ret.put("status","true");
+			return ret;
+		}
 	}
 	
 	private static List<Map<String, Object>> convertArticle(List<Map<String, Object>> list){
@@ -135,6 +146,15 @@ public class Articlem {
 		return ret;
 	}
 	
+	public static boolean userLikeArticle(int uid,String aid)throws SQLException{
+		DatabaseResult result = DatabaseHelper.query("select * from articlelike where userId=? and articleId=?",uid,aid);
+		if(result.getData().isEmpty()){
+			return false;
+		}
+		return true;
+	}
+	
+	
 	private static void updateArticleLike(String aid)throws SQLException{
 		DatabaseHelper.executeUpdate("update article set likeCount= (select count(*) from articlelike  where articleId=?)"
 				+ " where article.id=?",aid,aid);
@@ -156,7 +176,8 @@ public class Articlem {
 	
 	
 	public static void main(String[] args)throws Exception {
-		System.out.println(getSingleArticle("3"));
+		Object r = deleteArticle(7, "4");
+		System.out.println(r);
 	}
 	
 	

@@ -17,10 +17,11 @@ public class SessionInterceptor extends HandlerInterceptorAdapter{
 
     @Override
     public synchronized boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        HttpSession session = request.getSession();
+    	HttpSession session = request.getSession();
     	if(session.getAttribute("user") == null){
             Map<String,Object> map = new HashMap<>();
             map.put("status", false);
+            map.put("id", -1);
             session.setAttribute("user",map);
         }
         return true;

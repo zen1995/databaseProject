@@ -24,7 +24,10 @@ public class UserController {
 	public String loginPage(){
 		return "user/login";
 	}
-	
+	@RequestMapping(value= "/register",method = RequestMethod.GET)
+	public String registerPage(){
+		return "user/register";
+	}
 	@RequestMapping(value= "/login",method = RequestMethod.POST)
 	@ResponseBody
 	public String loginCheck(HttpServletRequest request,Model model)throws Exception{
@@ -36,6 +39,7 @@ public class UserController {
 		request.getSession().setAttribute("user",map);
 		return json;
 	}
+	
 	
 	@RequestMapping(value = "/")
 	public String userPage(HttpServletRequest request,Model model)throws SQLException{
