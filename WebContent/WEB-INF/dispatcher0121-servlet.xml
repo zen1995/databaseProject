@@ -27,10 +27,10 @@
     </bean>   
       <mvc:default-servlet-handler />
     <mvc:resources location="/WEB-INF/resource/static/" mapping="/resource/static/**"  />
-    <!--   -->
+    <!-- -->
     <mvc:interceptors>
         <bean class="webDatabase.model.SessionInterceptor">
         </bean>
-    </mvc:interceptors>
+    </mvc:interceptors>  
 
 </beans>  

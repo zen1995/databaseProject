@@ -17,7 +17,8 @@ import webDatabase.util.JsonHelper;
 
 @Controller
 public class TagController {
-    @RequestMapping(value = "/tag/add")
+    //not use
+	@RequestMapping(value = "/tag/add")
     @ResponseBody
     public String addTag(HttpServletRequest request,Model model)throws SQLException{
     	String tag = request.getParameter("tagName");

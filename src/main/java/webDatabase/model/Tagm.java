@@ -48,11 +48,26 @@ public class Tagm {
 		}
 	} 
 	
-	public static boolean addArticleTag(String tagId,String articleId)throws SQLException{
+	public static boolean addArticleTag(String tagName,String articleId)throws SQLException{
+
+		
+		DatabaseResult result = DatabaseHelper.query("select * from tag where tagName=?",tagName);
+		String tid;
+		if(result.getData().isEmpty()){
+			Map<String,Object> tag = new HashMap<>();
+			tag.put("tagName", tagName);
+			DatabaseHelper.insertRecord("tag",tag);
+			tid = String.valueOf( DatabaseHelper.query("select * from tag where tagName=?",tagName).getData().get(0).get("id"));
+		}
+		else{
+			tid = String.valueOf( result.getData().get(0).get("id"));
+		}
 		Map<String, Object> map = new HashMap<>();
 		map.put("articleId", articleId);
-		map.put("tagId", tagId);
+		map.put("tagId", tid);
+		System.out.println(tid);
 		DatabaseHelper.insertRecord("articleTag",map);
+		
 		return true;
 	}
 	
@@ -68,8 +83,7 @@ public class Tagm {
 	
 	public static void main(String[] args)throws Exception {
 		// TODO Auto-generated method stub
-		Object rObject = getArticleTag("1");
-		System.out.println(rObject);
+		addArticleTag("hahhdda","3");
 	}
 
 }

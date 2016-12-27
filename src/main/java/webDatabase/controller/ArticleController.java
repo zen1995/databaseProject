@@ -173,9 +173,9 @@ public class ArticleController {
     	if((boolean)user.get("status") == true){
     		String aid = request.getParameter("aid");
     		int uid = (int)user.get("id");
-    		String tid = request.getParameter("tid");
+    		String tname = request.getParameter("tname");
     		Map<String,Object> map2 = new HashMap<>();
-    		map2 = Articlem.addArticleTag(aid, tid);
+    		map2 = Articlem.addArticleTag(aid, tname);
     		return JsonHelper.jsonEncode(map2);
     	}
     	else{
@@ -187,6 +187,25 @@ public class ArticleController {
     	}
     } 
     
-    
+    @RequestMapping(value = "/article/deleteTag")
+    @ResponseBody
+    public String delete(HttpServletRequest request)throws SQLException{
+    	Map<String,Object> user = (Map<String, Object>)request.getSession().getAttribute("user");
+    	if((boolean)user.get("status") == true){
+    		String aid = request.getParameter("aid");
+    		int uid = (int)user.get("id");
+    		String tid = request.getParameter("tid");
+    		Map<String,Object> map2 = new HashMap<>();
+    		map2 = Articlem.deleteArticleTag(aid, tid);
+    		return JsonHelper.jsonEncode(map2);
+    	}
+    	else{
+    		Map<String,Object> map2 = new HashMap<>();
+    		map2.put("status", true);
+    		map2.put("info","login status error");
+    		//model.addAttribute("info","login status error");
+    		return JsonHelper.jsonEncode(map2);    
+    	}
+    }    
     
 }  

@@ -24,9 +24,9 @@ public class Articlem {
 		byType = byType.toLowerCase();
 		DatabaseResult result;
 		if (byType.equals("bylike")) {
-			result = DatabaseHelper.search("article", new ArrayList<>(), "likeCount", "desc");
+			result = DatabaseHelper.search("articleview", new ArrayList<>(), "likeCount", "desc");
 		} else {
-			result = DatabaseHelper.search("article", new ArrayList<>(), "id", "desc");
+			result = DatabaseHelper.search("articleview", new ArrayList<>(), "id", "desc");
 		}
 		return convertArticle(result.getData());
 	}
@@ -160,24 +160,29 @@ public class Articlem {
 				+ " where article.id=?",aid,aid);
 	}
 	
-	public static Map<String,Object> addArticleTag(String aid,String tid)throws SQLException{
+	public static Map<String,Object> addArticleTag(String aid,String tagName)throws SQLException{
 		Map<String, Object> ret = new HashMap<>();
 		try {
-			Map<String,Object> map = new HashMap<>();
-			map.put("articleId",aid);
-			map.put("tagId", tid);
-			DatabaseHelper.insertRecord("articletag",map);
+			boolean r = Tagm.addArticleTag(tagName, aid);
 			ret.put("status",true);
 		} catch (Exception e) {
 			ret.put("status",false);
 		}
 		return ret;
 	}
-	
+	public static Map<String,Object> deleteArticleTag(String aid,String tid)throws SQLException{
+		Map<String, Object> ret = new HashMap<>();
+		try {
+			DatabaseHelper.executeSql("delete from articletag where articleId="+aid+" and tagId="+tid);
+			ret.put("status",true);
+		} catch (Exception e) {
+			ret.put("status",false);
+		}
+		return ret;
+	}	
 	
 	public static void main(String[] args)throws Exception {
-		Object r = deleteArticle(7, "4");
-		System.out.println(r);
+		deleteArticleTag("31", "1");
 	}
 	
 	

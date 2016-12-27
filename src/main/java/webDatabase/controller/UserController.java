@@ -40,6 +40,19 @@ public class UserController {
 		return json;
 	}
 	
+	@RequestMapping(value= "/logout")
+	@ResponseBody
+	public String logout(HttpServletRequest request,Model model)throws Exception{
+        Map<String,Object> map = new HashMap<>();
+        map.put("status", false);
+        map.put("id", -1);
+        request.getSession().setAttribute("user",map);
+		Map<String,Object>ret = new HashMap<>();
+		ret.put("status", true);
+		ret.put("info", "success!");
+        return JsonHelper.jsonEncode(ret);
+	}
+	
 	
 	@RequestMapping(value = "/")
 	public String userPage(HttpServletRequest request,Model model)throws SQLException{
