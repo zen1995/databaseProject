@@ -107,11 +107,11 @@ function articleDelete(id){
             data=eval('('+data+')');
             alert(id);
             console.log(data);
-            /*if(data.status == true){
+            if(data.status == true){
             	//window.location.reload();
             }
             else{
-            }*/
+            }
 		}
 	});
 $.ajax(ajax);

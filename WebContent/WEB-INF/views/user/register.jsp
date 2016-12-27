@@ -26,11 +26,11 @@
                 <p>sex:</p>
 				<p>
 				   <input name="sex" type="radio" id="male" />
-				   <label for="male">Red</label>
+				   <label for="male">Man</label>
 				</p>
 				<p>
 				   <input name="sex" type="radio" id="femal" />
-				   <label for="femal">Yellow</label>
+				   <label for="femal">Woman</label>
 				</p>
 				 
                 <a class="waves-effect waves-light btn blue white-text" onclick="checkUserInfo()">检查用户</a>

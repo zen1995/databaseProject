@@ -2,7 +2,8 @@
 	<!-- Dropdown Trigger -->
     <div class="row" id = "frame" ><!---->
     <c:forEach items = "${articles}" var = "article"> 
-    
+    	<c:out value="${article }"></c:out>
+    	<c:out value="${user }"></c:out>
         <div class="col m8 offset-m2 s12"  ><!--id = "standard"-->
             <div class="card hoverable" >
             
