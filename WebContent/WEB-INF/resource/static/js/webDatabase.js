@@ -300,6 +300,44 @@ function editUser(){
 	$.ajax(ajax);
 }
 function findUser(){
-	var name = window.prompt("请输入要查找的用户名：","SB泽年");
-	alert(name);
+    window.location.href="/user/search";
+}
+
+function followUser(Uid2){
+	var data={uid2:Uid2};
+	var command;
+	var like=document.getElementById("likeheart");
+	var ajax1 = $.extend({},config.ajaxConfig,
+    		{
+		url:"/user/follow/unfollow",
+		data:data,
+		success:function(data){
+            data=eval('('+data+')');
+            if(data.status == true){
+            	alert("unfollow");
+            	like.className = "mdi-action-favorite-outline";
+            	window.location.href="/user/";
+            }
+            else{
+            	
+            }
+		}
+	});
+	var ajax = $.extend({},config.ajaxConfig,
+    		{
+		url:"/user/follow/follow",
+		data:data,
+		success:function(data){
+            data=eval('('+data+')');
+            if(data.status == true){
+            	alert("follow");
+            	like.className = "mdi-action-favorite";
+            	window.location.href="/user/";
+            }
+            else{
+            	$.ajax(ajax1);
+            }
+		}
+	});
+	$.ajax(ajax);
 }

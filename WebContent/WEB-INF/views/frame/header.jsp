@@ -90,7 +90,7 @@
 							<ul id="userSearch-p" class="dropdown-content">
 							<li class="divider" ></li>
 			     			<!-- <li><a href="/?showType=bytime" class='black-text'>新加入</a></li> -->
-			     			<li><a onClick="" class='black-text'>精确查找</a></li>
+			     			<li><a onClick="findUser()" class='blue-text'>精确查找</a></li>
 							</ul>
      						<li><a class="dropdown-button" href="#!" data-activates="userSearch-p">
      						查找用户<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
