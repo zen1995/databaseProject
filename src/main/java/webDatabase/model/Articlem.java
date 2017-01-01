@@ -119,11 +119,11 @@ public class Articlem {
 		}*/ 
 		DatabaseResult result = DatabaseHelper.query("select updateArticle(?,?,?,?) as res",aid,uid,title,content);
 		if((int)(result.getData().get(0).get("res")) == 0){
-			ret.put("status","true");
+			ret.put("status",true);
 			return ret;
 		}
 		else{
-			ret.put("status", "false");
+			ret.put("status", false);
 			ret.put("info", "not signed in or aid incorrect");
 			return ret;
 		}
