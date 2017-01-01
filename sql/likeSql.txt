@@ -1,9 +1,10 @@
 DELIMITER 
 CREATE FUNCTION updateLike(aid int) 
+returns int
 BEGIN
 DECLARE c int;
 select count(*) from article join articlelike on article.id=articlelike.articleId where articleId=aid into c;
-update article set likeCount= c where article.id=aid
+update article set likeCount= c where article.id=aid;
 RETURN c;
 END
 

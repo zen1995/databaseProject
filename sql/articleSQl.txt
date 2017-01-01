@@ -1,5 +1,5 @@
 DELIMITER 
-CREATE FUNCTION updaesdsArticle(aid int,uid int,ntitle text,ncontent text) 
+CREATE FUNCTION updateArticle(aid int,uid int,ntitle text,ncontent text) 
 returns int
 BEGIN
 DECLARE c int;
@@ -13,7 +13,7 @@ end if;
 END
 
 DELIMITER 
-CREATE FUNCTION updaesdsArticle(uid int,aid ind) 
+CREATE FUNCTION deleteArticle(uid int,aid int) 
 returns int
 BEGIN
 DECLARE c int;
