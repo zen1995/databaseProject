@@ -12,12 +12,14 @@
                 </div>
                 
                 <div class="input-field">
-                    <label for="password" >password</label>
-                    <input id = "password" type="password" name="password" autocomplete="off"/>
+                    <label for="password" >password(至少六位)</label>
+                    <input class="password" id = "password" type="password" name="password" autocomplete="off"/>
                 </div>
                 <div class="input-field">
                     <label for="password_check" >password repeat</label>
-                    <input id = "password_check" type="password" name="password" autocomplete="off"/>
+                    <input class="password_check"id = "password_check" type="password" name="password" autocomplete="off"/>
+                    <p class="red-text" id="warning1" style="display:none">两次输入密码不一致</p>
+                    <p class="red-text" id="warning2" style="display:none">密码长度最短为六位</p>
                 </div>
                 <div class="input-field">
                     <label for="username" >user name</label>
@@ -25,15 +27,20 @@
                 </div>
                 <p>sex:</p>
 				<p>
-				   <input name="sex" type="radio" id="male" />
+				   <input name="sex" type="radio" value="1" id="male" checked/>
 				   <label for="male">Man</label>
 				</p>
 				<p>
-				   <input name="sex" type="radio" id="femal" />
+				   <input name="sex" type="radio" value="2" id="femal" />
 				   <label for="femal">Woman</label>
 				</p>
-				 
-                <a class="waves-effect waves-light btn blue white-text" onclick="checkUserInfo()">检查用户</a>
+				
+			 <!-- 	<div class="divider"></div>-->
+				<!-- <div class="input-field col s12"> -->
+		      <!--   <textarea id="content" name="content" class="materialize-textarea" length="120"></textarea>
+		          <label for="content">personal signature</label>
+		        </div> -->
+               <!--  <a class="waves-effect waves-light btn blue white-text" onclick="checkUserInfo()">检查用户</a> -->
                 <a class="waves-effect waves-light btn blue white-text" onclick="insertUser()">注册</a>
             </form>
         </div>
@@ -41,13 +48,8 @@
 </div>
 
 <script >
-    $(document).ready(function(){
-        $('.datepicker').pickadate({
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 15 // Creates a dropdown of 15 years to control year
-        });
 
-    });
+
 
 </script>
 

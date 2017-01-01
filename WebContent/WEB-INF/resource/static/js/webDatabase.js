@@ -43,11 +43,11 @@ temp.submit();
 return temp; */
 function addPage(){
 	//var title = document.getElementById("title");
-	var title = $("title").val();
+	var Title = $("#title").val();
 	//var content = document.getElementById("content");
-	var content = $("content").val();
-	var myurl = "article/add";
-	var data = {Title:title, Content:content};
+	var Content = $("#content").val();
+	var myurl = "/article/add";
+	var data = {title:Title, content:Content};
 	var ajax = $.extend({},config.ajaxConfig,
     		{
 		url:myurl,
@@ -58,6 +58,7 @@ function addPage(){
             	window.location.href = "/user/";
             }
             else{
+            	alert("失败");
             }
 		}
 	});
@@ -105,13 +106,7 @@ function articleDelete(id){
 		data:data,
 		success:function(data){
             data=eval('('+data+')');
-            alert(id);
-            console.log(data);
-            if(data.status == true){
-            	//window.location.reload();
-            }
-            else{
-            }
+            window.location.reload();
 		}
 	});
 $.ajax(ajax);
@@ -120,3 +115,191 @@ $.ajax(ajax);
 function articleEdit(id){
 }
 
+function signOut(){
+	var data;
+	var ajax = $.extend({},config.ajaxConfig,
+    		{
+		url:"/user/logout",
+		data:data,
+		success:function(data){
+            data=eval('('+data+')');
+            if(data.status == true){
+            	window.location.href = "/";
+            }
+            else{
+            }
+		}
+	});
+$.ajax(ajax);
+}
+function addTagInput(){
+	var input = $("#inputTagName");
+	var lable = $("#labTagName");
+	var submit = $("#TagSubmit")
+	if(input.css("display")=="none"){
+		$("#inputTagName").css("display","inline");
+		$("#labTagName").css("display","inline");
+		$("#TagSubmit").css("display","inline");
+		//alert($("#inputTagName").css("display"));
+	}
+	else{
+		input.css("display", "none");
+		lable.css("display", "none");
+		$("#TagSubmit").css("display","none");
+	}
+}
+function addTag(id){
+	var data = {aid:id, tname:$("#inputTagName").val()};
+	var ajax = $.extend({},config.ajaxConfig,
+    		{
+		url:"/article/addTag",
+		data:data,
+		success:function(data){
+            data=eval('('+data+')');
+            if(data.status == true){
+            	window.location.reload();
+            }
+            else{
+            }
+		}
+	});
+$.ajax(ajax);
+}
+function deletTag(Aid, Tid){
+	var data= {aid:Aid, tid:Tid};
+	event.returnValue = confirm("删除是不可恢复的，你确认要删除吗？");
+	var ajax = $.extend({},config.ajaxConfig,
+    		{
+		url:"/article/deleteTag",
+		data:data,
+		success:function(data){
+            data=eval('('+data+')');
+            if(data.status == true){
+            	window.location.reload();
+            }
+            else{
+            }
+		}
+	});
+	if(event.returnValue){
+		$.ajax(ajax);
+	}
+}
+function insertUser(){
+	var act = $("#useraccount").val();
+	var pw = $("#password").val();
+    var pwc = $("#password_check").val();
+    var nm = $("#username").val();
+    var sex;
+    var mal = $('input:radio[name="sex"]:checked').val();
+    var warning1 = $("#warning1"); 
+    var warning2 = $("#warning2"); 
+    var data={account:act, name:nm, password:pw, sex:sex};
+    if(mal == 1)
+    	sex="male";
+    else
+    	sex="female";
+    if(pw != pwc){
+    	warning1.css("display", "inline");
+    	return;
+    }
+    if(pw.length < 6){
+    	warning2.css("display", "inline");
+    	return;
+    }
+    var ajax = $.extend({},config.ajaxConfig,
+    		{
+		url:"/user/register/register",
+		data:data,
+		success:function(data){
+            data=eval('('+data+')');
+            if(data.status == true){
+            	window.location.href="/";
+            }
+            else{
+            }
+		}
+	});
+	if(event.returnValue){
+		$.ajax(ajax);
+	}
+}
+function articleEdit(aid){
+	window.location.href="/article/modifyPage/"+aid;
+}
+function modifyPage(Aid){
+	var Title = $("#title").val();
+	//var content = document.getElementById("content");
+	var Content = $("#content").val();
+	var myurl = "/article/modify";
+	var data = {aid:Aid, title:Title, content:Content};
+	var ajax = $.extend({},config.ajaxConfig,
+    		{
+		url:myurl,
+		data:data,
+		success:function(data){
+            data=eval('('+data+')');
+            if(data.status == true){
+            	window.location.href = "/user/";
+            }
+            else{
+            	//alert("失败");
+            }
+		}
+	});
+$.ajax(ajax);
+}
+
+function changePage(){
+	window.location.href="/user/editInfo";
+}
+
+function editUser(){
+	var act = $("#useraccount").val();
+	var pw = $("#password").val();
+    var pwc = $("#password_check").val();
+    var nm = $("#username").val();
+    var sex;
+    var age=$("#userage").val();
+    var mal = $('input:radio[name="sex"]:checked').val();
+    var warning1 = $("#warning1"); 
+    var warning2 = $("#warning2"); 
+    var content=$("#content").val();
+    if(mal == 1)
+    	sex="male";
+    else
+    	sex="female";
+    if(pw != pwc){
+    	warning1.css("display", "inline");
+    	return;
+    }
+    else{
+    	warning1.css("display", "none");
+    }
+    if(pw.length < 6){
+    	warning2.css("display", "inline");
+    	return;
+    }
+    else{
+    	warning2.css("display", "none");
+    }
+    var data={name:nm, sex:sex, age:age, password:pw, description:content};
+    var ajax = $.extend({},config.ajaxConfig,
+    		{
+		url:"/user/editInfo/edit",
+		data:data,
+		success:function(data){
+            data=eval('('+data+')');
+            if(data.status == true){
+            	window.location.href="/";
+            }
+            else{
+            }
+		}
+	});
+	$.ajax(ajax);
+}
+function findUser(){
+	var name = window.prompt("请输入要查找的用户名：","SB泽年");
+	alert(name);
+}

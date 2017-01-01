@@ -52,7 +52,8 @@
 							<li id="signInBtn"><a href="/user/login">sign in</a></li>
 						</c:if>
 						<c:if test="${user.status == true}">
-							<li id="signOutBtn"><a href="#">sign out</a></li>
+							<li><a class="signOutBtn" onClick="signOut()">sign out</a></li>
+							<!--<li id="signOutBtn"><a href="#">sign out</a></li>-->
 							<!--onclick="signOut()"-->
 						</c:if>
 						
@@ -66,7 +67,7 @@
 							<li><a href="/user/login">sign in</a></li>
 						</c:if>	
 				    	<c:if test="${user.status == true}">
-							<li><a href="#">sign out</a></li>
+							<li><a class="signOutBtn" onClick="signOut()">sign out</a></li>
 							<!--onclick="signOut()"-->
 						</c:if>
 						<c:if test="${user.status == true}">
@@ -88,8 +89,8 @@
      						查看文章<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 							<ul id="userSearch-p" class="dropdown-content">
 							<li class="divider" ></li>
-			     			<li><a href="/?showType=bytime" class='black-text'>新加入</a></li>
-			     			<li><a href="/searchUser/exact" class='black-text'>精确查找</a></li>
+			     			<!-- <li><a href="/?showType=bytime" class='black-text'>新加入</a></li> -->
+			     			<li><a onClick="" class='black-text'>精确查找</a></li>
 							</ul>
      						<li><a class="dropdown-button" href="#!" data-activates="userSearch-p">
      						查找用户<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
@@ -131,8 +132,8 @@
     					查看文章<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 						<ul id="userSearch" class="dropdown-content">
 						<li class="divider" ></li>
-			     		<li><a href="/?showType=bytime" class='blue-text'>新加入</a></li>
-			     		<li><a href="/searchUser/exact" class='blue-text'>精确查找</a></li>
+			     	<!--	<li><a href="/?showType=bytime" class='blue-text'>新加入</a></li> -->
+			     		<li><a onClick="findUser()" class='blue-text'>精确查找</a></li>
 						</ul>
     					<li><a class="dropdown-button" href="#!" data-activates="userSearch">
     					查找用户<i class="mdi-navigation-arrow-drop-down right"></i></a></li>

@@ -1,21 +1,23 @@
-<div class="container" ><!---->
-	<!-- Dropdown Trigger -->
-    <div class="row" id = "frame" ><!---->
-    <c:forEach items = "${articles}" var = "article"> 
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/WEB-INF/views/frame/header.jsp"%>
+
+<div class="row" id = "frame" ><!---->
+    <c:forEach items = "${users}" var = "user"> 
         <div class="col m8 offset-m2 s12"  ><!--id = "standard"-->
             <div class="card hoverable" >
                 <div class="card-content ">
                     <div class="center row" >
-                        <a href='/article/show/<c:out value="${ article.id}"></c:out>' class="col s12">
+                    <a href='/article/show/<c:out value="${ user.name}"></c:out>' class="col s12">
                             <h5   style="width: 100%">
-                            <c:out value="${article.title} "></c:out>
+                            <c:out value="${ user.name} "></c:out>
                             </h5>
                         </a>
                         <span ng-bind = "'publishTime: ' +  (article.time | articleDate)" class="col s12 m4 offset-m2 grey-text">
-                        	time:<c:out value = "${article.timeStr }"></c:out>
+                        	sex:<c:out value = "${user.sex }"></c:out>
                         </span>
                         <span ng-bind = "'author: ' + article.publisher.userName" class="col s12 m4 grey-text">
-                        	user:<c:out value = "${article.name}"></c:out>
+                        	age:<c:out value = "${user.age}"></c:out>
                         </span>
                     </div>
                     <div class="divider"></div>
@@ -25,16 +27,8 @@
                     	<c:out value = "${article.content}"></c:out>
                     </p>
                 </div>
-               <!--  <div class="card-action">
-                    <a ng-href="{{'/article/show/'+article.id}}" id = "detailLink">view detail</a>
-                </div>  -->
             </div>
         </div>
-        </c:forEach>       
-    </div>
+   </c:forEach>       
 </div>
-<script>
-    $(document).ready(function(){
-        //getAllArticle();
-    });
-</script>
+<%@include file="/WEB-INF/views/frame/footer.jsp"%>
