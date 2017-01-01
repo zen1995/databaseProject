@@ -5,7 +5,7 @@ BEGIN
 declare c int;
 select count(*) from user where account=u_account into c;
 if c =0 then
-	insert into user (account,name,password,registerTime) values (u_account,u_name,u_password,u_sex);
+	insert into user (account,name,password,sex,registerTime) values (u_account,u_name,u_password,u_sex,unix_timestamp());
 	return 0;
 else 
 	return -1;
