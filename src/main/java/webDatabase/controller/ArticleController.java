@@ -163,6 +163,7 @@ public class ArticleController {
     		model.addAttribute("info","you are not authorized");
     		return "other/errPage";  
     	}
+    	model.addAttribute("article", article);
     	return "article/modify";
     } 
 
