@@ -147,7 +147,7 @@ public class ArticleController {
     		map.put("info", "you are not log in");
     		return JsonHelper.jsonEncode(map);
     	}
-    	Map<String, Object> map = Articlem.updateArticle((int)user.get("id"),aid, article);
+    	Map<String, Object> map = Articlem.updateArticle((int)user.get("id"),aid, title,content);
     	return JsonHelper.jsonEncode(map);
     } 
     

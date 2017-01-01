@@ -49,8 +49,7 @@ public class Tagm {
 	} 
 	
 	public static boolean addArticleTag(String tagName,String articleId)throws SQLException{
-
-		
+/*		
 		DatabaseResult result = DatabaseHelper.query("select * from tag where tagName=?",tagName);
 		String tid;
 		if(result.getData().isEmpty()){
@@ -67,7 +66,8 @@ public class Tagm {
 		map.put("tagId", tid);
 		System.out.println(tid);
 		DatabaseHelper.insertRecord("articleTag",map);
-		
+*/		
+		DatabaseHelper.query("select addArticleTag(?,?)", tagName,articleId);
 		return true;
 	}
 	

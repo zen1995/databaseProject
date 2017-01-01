@@ -64,12 +64,16 @@ public class DatabaseHelper {
 		connection.close();
 	}
 
-	public static void executeSql(String s)throws SQLException{
-		Connection connection = DBConnection.getConnection();
-		Statement statement = connection.createStatement();
-		statement.execute(s);
-		statement.close();
-		connection.close();
+	public static void executeSql(String sql,Object ...args)throws SQLException{
+			Connection connection = DBConnection.getConnection();
+			PreparedStatement statement = connection.prepareStatement(sql);
+			for(int i=0;i < args.length;i++){
+				statement.setObject(i+1,args[i]);
+			}
+			statement.execute();
+			statement.close();
+			connection.close();
+
 	}
 	
 	public static boolean hasTable(String tableName) throws SQLException {

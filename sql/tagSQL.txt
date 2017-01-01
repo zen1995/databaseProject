@@ -1,0 +1,13 @@
+DELIMITER 
+CREATE FUNCTION addArticleTag(tname text,aid int) 
+returns int
+BEGIN
+DECLARE c,tid int;
+select count(*) from tag where tagName=tname into c;
+if c = 0 then 
+	insert into tag (tagName) values (tname);
+end if;
+select id from tag where tagName=tanme into tid;
+insert into articleTag (articleId,tagId) values(aid,tid);
+return 0;
+END

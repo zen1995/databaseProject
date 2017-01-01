@@ -15,6 +15,7 @@ import webDatabase.database.DatabaseResult;
 import webDatabase.database.Pair;
 
 public class Articlem {
+
 	public static List<Map<String, Object>> getAllArticle() throws SQLException {
 		DatabaseResult result = DatabaseHelper.search("article");
 		return convertArticle(result.getData());
@@ -74,7 +75,8 @@ public class Articlem {
 	}
 	
 	public static Map<String,Object> deleteArticle(int uid,String aid)throws SQLException{
-		Map<String,Object> map = new HashMap<>();
+		Map<String,Object> ret = new HashMap<>();
+		/*
 		List<Map<String, Object>> result = DatabaseHelper.query("select * from article where id=?",aid).getData();
 		if(result.isEmpty()){
 			map.put("status",false);
@@ -88,12 +90,22 @@ public class Articlem {
 			return map;
 		}
 		DatabaseHelper.executeUpdate("delete from article where id=?", aid);
-		map.put("status",true);
-		return map;
+		map.put("status",true);*/
+		DatabaseResult result = DatabaseHelper.query("select deleteArticle(?,?) as res",uid,aid);
+		if((int)(result.getData().get(0).get("res")) == 0){
+			ret.put("status","true");
+			return ret;
+		}
+		else{
+			ret.put("status", "false");
+			ret.put("info", "article not exist or no authorized");
+			return ret;
+		}
 	}
 	
-	public static Map<String,Object> updateArticle(int uid,String aid,Map<String,Object> article)throws SQLException{
-		Map<String,Object> ret = new HashMap<>();
+	public static Map<String,Object> updateArticle(int uid,String aid,String title,String content)throws SQLException{
+		
+		Map<String,Object> ret = new HashMap<>();/*
 		int r = DatabaseHelper.query("select * from article where id=? and publishUser=?",aid,uid).getData().size();
 		if(r == 0){
 			ret.put("status", "false");
@@ -103,6 +115,16 @@ public class Articlem {
 		else{
 			DatabaseHelper.editRecord("article", Integer.valueOf(aid), article);
 			ret.put("status","true");
+			return ret;
+		}*/ 
+		DatabaseResult result = DatabaseHelper.query("select updateArticle(?,?,?,?) as res",aid,uid,title,content);
+		if((int)(result.getData().get(0).get("res")) == 0){
+			ret.put("status","true");
+			return ret;
+		}
+		else{
+			ret.put("status", "false");
+			ret.put("info", "not signed in or aid incorrect");
 			return ret;
 		}
 	}
@@ -125,7 +147,7 @@ public class Articlem {
 			map.put("userId",uid);
 			map.put("articleId", aid);
 			DatabaseHelper.insertRecord("articlelike",map);
-			updateArticleLike(aid);
+			//updateArticleLike(aid);
 			ret.put("status", true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -139,7 +161,7 @@ public class Articlem {
 		try {
 			ret.put("status",true);
 			DatabaseHelper.executeUpdate("delete from articlelike where articleId=? and userId=?",aid,uid);
-			updateArticleLike(aid);
+			//updateArticleLike(aid);
 		} catch (Exception e) {
 			ret.put("status",false);
 		}
@@ -182,7 +204,8 @@ public class Articlem {
 	}	
 	
 	public static void main(String[] args)throws Exception {
-		deleteArticleTag("31", "1");
+		Object r = updateArticle(1,"1", "1","1");
+		System.out.println(r);
 	}
 	
 	

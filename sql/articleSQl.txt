@@ -1,0 +1,27 @@
+DELIMITER 
+CREATE FUNCTION updaesdsArticle(aid int,uid int,ntitle text,ncontent text) 
+returns int
+BEGIN
+DECLARE c int;
+select count(*) from article where id=aid and publishUser=uid into c;
+if c = 0 then 
+	return -1;
+else 
+	update article set title=ntitle,content=ncontent where article.id=aid;
+	return 0;
+end if;
+END
+
+DELIMITER 
+CREATE FUNCTION updaesdsArticle(uid int,aid ind) 
+returns int
+BEGIN
+DECLARE c int;
+select count(*) from article where id=aid and publishUser=uid into c;
+if c = 0 then 
+	return -1;#文章不存在，没有权限
+else 
+	delete from article where article.id=aid;
+	return 0;
+end if;
+END

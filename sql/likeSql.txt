@@ -1,0 +1,36 @@
+DELIMITER 
+CREATE FUNCTION updateLike(aid int) 
+BEGIN
+DECLARE c int;
+select count(*) from article join articlelike on article.id=articlelike.articleId where articleId=aid into c;
+update article set likeCount= c where article.id=aid
+RETURN c;
+END
+
+
+DELIMITER 
+create trigger t_u_updateLike after update on articlelike 
+for each row 
+begin
+declare a int;
+SELECT updateLike(old.articleId) into a; 
+SELECT updateLike(new.articleId) into a; 
+end
+
+DELIMITER 
+create trigger t_i_updateLike after insert on articlelike 
+for each row 
+begin
+declare a int;
+SELECT updateLike(new.articleId) into a; 
+end
+
+
+DELIMITER 
+create trigger t_d_updateLike after delete on articlelike 
+for each row 
+begin
+declare a int;
+SELECT updateLike(old.articleId) into a; 
+end
+
