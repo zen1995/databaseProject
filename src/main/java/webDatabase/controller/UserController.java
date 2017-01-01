@@ -77,7 +77,7 @@ public class UserController {
 		return JsonHelper.jsonEncode(map);
 	}
 	
-	@RequestMapping(value= "/register/register",method = RequestMethod.GET)
+	@RequestMapping(value= "/register/register")
 	@ResponseBody	
 	public String register(HttpServletRequest request)throws SQLException{
 		String account = request.getParameter("account");
@@ -87,5 +87,29 @@ public class UserController {
 		Map<String,Object> ret = Userm.register(account, name, password, sex);
 		return JsonHelper.jsonEncode(ret);
 	}
+	
+	@RequestMapping(value= "/editInfo/edit")
+	@ResponseBody
+	public String edit(HttpServletRequest request)throws SQLException{
+		Map<String,Object> user = (Map<String, Object>)request.getSession().getAttribute("user");
+		if((boolean)user.get("status") == false){
+			Map<String, Object> ret = new HashMap<>();
+			ret.put("status", false);
+			ret.put("info", "you are not loged in");
+			return JsonHelper.jsonEncode(ret);
+		}
+		String name = request.getParameter("name");
+		String sex = request.getParameter("sex");
+		String age = request.getParameter("age");
+		String password = request.getParameter("password");
+		String description = request.getParameter("description");
+		Map<String,Object> ret = Userm.editUserInfo((int)user.get("id"), name, sex, age, password, description);
+		return JsonHelper.jsonEncode(ret);
+	}
+	
+	@RequestMapping(value = "/editInfo")
+	public String editPage(HttpServletRequest request)throws SQLException{
+		return "user/editUser";
+	}	
 }
  

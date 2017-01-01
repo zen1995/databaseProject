@@ -55,4 +55,12 @@ public class Userm {
 		return ret;
 	}
 	
+	public static Map<String,Object> editUserInfo(int uid,String name,String sex,String age,String password,String description)throws SQLException{
+		DatabaseHelper.executeUpdate("update user set name=?,sex=?,age=?,password=?,description=? where id=?",name,sex,age,password,description,uid);
+		Map<String,Object> ret = new HashMap<>();
+		ret.put("status", true);
+		return ret;
+
+	}
+	
 }
