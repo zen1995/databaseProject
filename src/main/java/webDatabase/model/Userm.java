@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -121,7 +122,29 @@ public class Userm {
 		
 		request.getSession().setAttribute("user",map);
 	}
+	
+	public static List<Map<String,Object>> searchUser(String userName)throws SQLException{
+		DatabaseResult result = DatabaseHelper.query("select * from user where name like ?","%"+userName+"%");
+		return result.getData();
+	}
+	
+	public static Map<String,Object> getUserById(String uid)throws SQLException{
+		DatabaseResult result = DatabaseHelper.query("select * from user where id=?", uid);
+		if(result.getData().size() == 0){
+			Map<String, Object> ret = new HashMap<>();
+			ret.put("status", false);
+			return ret;
+		}
+		Map<String, Object> ret = result.getData().get(0);
+		result = DatabaseHelper.query("select * from userfollow where user1=?",uid);
+		ret.put("fout", result.getData());
+		result = DatabaseHelper.query("select * from userfollow where user2=?",uid);
+		ret.put("status", true);
+		ret.put("fin", result.getData());
+		return ret;
+	}
+	
 	public static void main(String[] args)throws Exception {
-		unFollow("1", "2");
+		System.out.println(searchUser("name"));
 	}
 }
