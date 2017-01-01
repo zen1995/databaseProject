@@ -2,13 +2,15 @@ package webDatabase.controller;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.Session;
 
 import org.springframework.stereotype.Controller;  
-import org.springframework.ui.Model;  
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -144,5 +146,26 @@ public class UserController {
 		Userm.refreshUser(request);
 		return JsonHelper.jsonEncode(ret);
 	}
+	
+	@RequestMapping(value= "/serach")
+	public String searchPage(HttpServletRequest request)throws SQLException{
+		return "/user/search";
+	}
+	
+	@RequestMapping(value= "/s")
+	public String search(HttpServletRequest request,Model model)throws SQLException{
+		String userName = request.getParameter("userName");
+		List<Map<String, Object>> r = Userm.searchUser(userName);
+		model.addAttribute("users",r);
+		return "/user/searchResult";
+	}
+	@RequestMapping(value = "/space/{uid}")
+	public String userSpace(HttpServletRequest request,Model model,@PathVariable("uid") String uid)throws SQLException{
+		//HashMap<String,Object> user = (HashMap<String,Object>)request.getSession().getAttribute("user");
+		model.addAttribute("articles",Articlem.getUserArticle(uid));
+		model.addAttribute("spaceUser",Userm.getUserById(uid));
+		return "user/userSpace";
+	}
+	
 }
  
