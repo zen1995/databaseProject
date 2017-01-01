@@ -1,18 +1,44 @@
 package webDatabase.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import webDatabase.database.DBConnection;
 import webDatabase.database.DatabaseController;
 import webDatabase.database.DatabaseHelper;
 import webDatabase.database.DatabaseResult;
 
 public class Userm {
 	public static Map<String,Object> loginCheck(String user,String pasword)throws SQLException{
-		return DatabaseController.loginPassword(user, pasword);
+		Map<String, Object> map = new HashMap<>();
+		Connection connection = DBConnection.getConnection();
+		PreparedStatement statement = connection.prepareStatement("select * from user where account=? and password=?");
+		statement.setString(1, user);
+		statement.setString(2, pasword);
+		ResultSet set = statement.executeQuery();
+		DatabaseResult result = new DatabaseResult(set);
+		set.close();
+		statement.close();
+		connection.close();
+		if(result.getData().size() == 0){
+			map.put("status", false);
+		}
+		else {
+			map = result.getData().get(0);
+			result = DatabaseHelper.query("select * from userfollow where user1=?",map.get("id"));
+			map.put("fout", result.getData());
+			result = DatabaseHelper.query("select * from userfollow where user2=?",map.get("id"));
+
+			map.put("fin", result.getData());
+			map.put("status", true);
+		}
+		return map;
 	}
 	
 	public static void logOut(HttpServletRequest request){
@@ -62,6 +88,6 @@ public class Userm {
 		return ret;
 	}
 	public static void main(String[] args)throws Exception {
-		register("aaaassaa","tsst", "asa", "asa");
+		editUserInfo(1,"aa","aa","11","aa","ss");
 	}
 }

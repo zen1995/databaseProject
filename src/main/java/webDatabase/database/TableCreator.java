@@ -100,20 +100,21 @@ public class TableCreator {
 		DatabaseHelper.executeSql(sql);
 		sql = "create unique index articleIndex on article(id)";
 		DatabaseHelper.executeSql(sql);
-		sql = "create unique index articlelikeIndex1 on articlelike(userId)";
+		sql = "create  index articlelikeIndex1 on articlelike(userId)";
 		DatabaseHelper.executeSql(sql);
-		sql = "create unique index articlelikeIndex2 on articlelike(articleId)";
+		sql = "create  index articlelikeIndex2 on articlelike(articleId)";
 		DatabaseHelper.executeSql(sql);
-		sql = "create unique index articletagIndex1 on articletag(articleId)";
+		sql = "create  index articletagIndex1 on articletag(articleId)";
 		DatabaseHelper.executeSql(sql);
-		sql = "create unique index articletagIndex2 on articletag(tagId)";
+		sql = "create  index articletagIndex2 on articletag(tagId)";
 		DatabaseHelper.executeSql(sql);	
 		sql = "create unique index tagIndex on tag(id)";
 		DatabaseHelper.executeSql(sql);	
-		sql = "create unique index userFollowIndex1 on userfollow(user1)";
+		sql = "create  index userFollowIndex1 on userfollow(user1)";
 		DatabaseHelper.executeSql(sql);
-		sql = "create unique index userFollowIndex2 on userfollow(user2)";
-		DatabaseHelper.executeSql(sql);	
+		sql = "create  index userFollowIndex2 on userfollow(user2)";
+		DatabaseHelper.executeSql(sql);
+		
 	}
 
 

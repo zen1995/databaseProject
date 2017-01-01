@@ -434,7 +434,7 @@ public class DatabaseHelper {
 			statement.close();
 			connection.close();
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 			return false;
 		}
 		return true;

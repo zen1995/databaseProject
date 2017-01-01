@@ -72,7 +72,12 @@ public class DataCreater {
 				Map<String, Object> follow = new HashMap<>();
 				follow.put("user1", uid1);
 				follow.put("user2", uid2);
-				DatabaseHelper.insertRecord("userfollow", follow);
+				try {
+					DatabaseHelper.insertRecord("userfollow", follow);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				break;
 			}
 		}
