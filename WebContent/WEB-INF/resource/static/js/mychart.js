@@ -132,9 +132,7 @@ function initPupolarUser(echarts,theme){
 	var xData = [],SData = [];
     for(var i = 0;i < userData.length;i++){
     	d = userData[i];
-    	//console.log(d);
     	xData.push(d.name);
-    	//var o = {name:d.name,value:d.sexSum};
     	SData.push(d.likeSum);
     }
     //console.log(xData);
@@ -154,23 +152,40 @@ function initPupolarArticle(echarts,theme){
 	var xData = [],SData = [];
     for(var i = 0;i < articleData.length;i++){
     	d = articleData[i];
-    	console.log(d);
     	xData.push(d.title);
-    	//var o = {name:d.name,value:d.sexSum};
     	SData.push(d.likeCount);
     }
-    console.log(xData);
-    console.log(SData);
+    //console.log(xData);
+    //console.log(SData);
     option.series[0].name = '点赞数';
     option.series[0].data = SData;
     option.xAxis.data = xData;
     myChart.setOption(option);
 }
 
+function initMostFan(echarts,theme){
+	var myChart = echarts.init(document.getElementById('mostFan'),theme);
 
+	var option = $.extend({},lineOption);
+	option.title.text = "粉丝排行";
+	option.legend.data = ['粉丝数'];
+	var xData = [],SData = [];
+    for(var i = 0;i < mostFan.length;i++){
+    	d = mostFan[i];
+    	xData.push(d.name);
+    	SData.push(d.fans);
+    }
+    //console.log(xData);
+    //console.log(SData);
+    option.series[0].name = '粉丝数';
+    option.series[0].data = SData;
+    option.xAxis.data = xData;
+    myChart.setOption(option);
+}
 require(['require','echarts.min','macarons'],function(require,echarts,macarons){
     console.log(macarons);
     initSexChart(echarts,macarons);
     initPupolarUser(echarts,macarons);
     initPupolarArticle(echarts,macarons);
+    initMostFan(echarts,macarons);
 });

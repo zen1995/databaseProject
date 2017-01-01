@@ -24,4 +24,10 @@ public class Chartm {
 		DatabaseResult result = DatabaseHelper.query("select likeCount,name,title from articleview order by likeCount desc limit 10");
 		return result.getData();
 	}
+	
+	public static List<Map<String, Object>> getMostLikeUser()throws SQLException{
+		DatabaseResult result = DatabaseHelper.query("select count(*) as fans, name,user.id from user "
+				+ "join userfollow on userfollow.user2=user.id group by user.id,name  order by fans desc limit 10");
+		return result.getData();
+	}
 }
