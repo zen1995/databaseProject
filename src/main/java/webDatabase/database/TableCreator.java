@@ -33,7 +33,8 @@ public class TableCreator {
 	private static void createUserTable() throws SQLException {
 		String sql = "create table user(" + "id INT NOT NULL AUTO_INCREMENT,\n" + "name varchar(50),\n"
 				+ "sex varchar(10),\n" + "age int,\n" + "account varchar(50),\n" + "password varchar(50),\n"
-				+ "registerTime varchar(50),\n" + "" + "dbPassowrd varchar(50)," + "dbUser varchar(50)," + ""
+				+ "registerTime varchar(50),\n" 
+				+ "description text,\n"
 				+ "unique(id)," + "PRIMARY KEY (`id`)" + ") ENGINE = InnoDB;";
 		DatabaseHelper.executeSql(sql);
 	}
