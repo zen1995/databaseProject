@@ -33,7 +33,7 @@ public class Articlem {
 	}
 
 	public static List<Map<String, Object>> getUserArticle(String uid)throws SQLException{
-		return DatabaseHelper.query("select * from articleview where publishUser=?", uid).getData();
+		return convertArticle(DatabaseHelper.query("select * from articleview where publishUser=?", uid).getData());
 	}
 	
 	

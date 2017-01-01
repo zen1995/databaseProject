@@ -86,7 +86,10 @@ public class DatabaseResult {
 		this.data = data;
 	}
 
-
+	public int getUnique(){
+		String key = columns.get(0).key;
+		return (int)data.get(0).get(key);
+	}
 
 	@Override
 	public String toString(){

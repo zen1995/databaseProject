@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import webDatabase.database.DatabaseHelper;
+import webDatabase.database.DatabaseResult;
 import webDatabase.model.Articlem;
 import webDatabase.model.Userm;
 import webDatabase.util.JsonHelper;
@@ -65,6 +67,25 @@ public class UserController {
 		model.addAttribute("articles",Articlem.getUserArticle(String.valueOf(user.get("id"))));
 		model.addAttribute("user",user);
 		return "user/userSpace";
+	}
+	
+	@RequestMapping(value= "/register/checkAccount",method = RequestMethod.GET)
+	@ResponseBody
+	public String checkAccount(HttpServletRequest request)throws SQLException{
+		String account = request.getParameter("account");
+		Map<String, Object> map = Userm.checkAccount(account);
+		return JsonHelper.jsonEncode(map);
+	}
+	
+	@RequestMapping(value= "/register/register",method = RequestMethod.GET)
+	@ResponseBody	
+	public String register(HttpServletRequest request)throws SQLException{
+		String account = request.getParameter("account");
+		String name = request.getParameter("name");
+		String password = request.getParameter("password");
+		String sex = request.getParameter("sex");
+		Map<String,Object> ret = Userm.register(account, name, password, sex);
+		return JsonHelper.jsonEncode(ret);
 	}
 }
  
