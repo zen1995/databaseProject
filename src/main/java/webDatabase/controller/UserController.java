@@ -147,7 +147,7 @@ public class UserController {
 		return JsonHelper.jsonEncode(ret);
 	}
 	
-	@RequestMapping(value= "/serach")
+	@RequestMapping(value= "/search")
 	public String searchPage(HttpServletRequest request)throws SQLException{
 		return "/user/search";
 	}
