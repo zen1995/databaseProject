@@ -87,7 +87,41 @@ public class Userm {
 		ret.put("status", true);
 		return ret;
 	}
+	
+	public static Map<String,Object> follow(String uid1,String uid2)throws SQLException{
+		int r = DatabaseHelper.query("select follow(?,?)", uid1,uid2).getUnique();
+		Map<String,Object> ret = new HashMap<>();
+		if(r == 0){
+			ret.put("status", true);
+		}
+		else{
+			ret.put("status", false);
+			ret.put("info", "you already follow this person");
+		}
+		return ret;
+	}
+	
+	public static Map<String, Object> unFollow(String uid1,String uid2)throws SQLException{
+		DatabaseHelper.executeUpdate("delete from userfollow where user1=? and user2=?",uid1,uid2);
+		Map<String,Object> ret = new HashMap<>();
+		ret.put("status", true);
+		
+		return ret;
+	}
+	public static void refreshUser(HttpServletRequest request)throws SQLException{
+		Map<String,Object> user = (Map<String, Object>)request.getSession().getAttribute("user");
+		int uid = (int)user.get("id");
+		Map<String,Object> map = DatabaseHelper.query("select * from user where id=?", uid).getData().get(0);
+		DatabaseResult result = DatabaseHelper.query("select * from userfollow where user1=?",map.get("id"));
+		map.put("fout", result.getData());
+		result = DatabaseHelper.query("select * from userfollow where user2=?",map.get("id"));
+
+		map.put("fin", result.getData());
+		map.put("status", true);
+		
+		request.getSession().setAttribute("user",map);
+	}
 	public static void main(String[] args)throws Exception {
-		editUserInfo(1,"aa","aa","11","aa","ss");
+		unFollow("1", "2");
 	}
 }

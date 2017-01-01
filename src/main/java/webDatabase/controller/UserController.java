@@ -104,6 +104,7 @@ public class UserController {
 		String password = request.getParameter("password");
 		String description = request.getParameter("description");
 		Map<String,Object> ret = Userm.editUserInfo((int)user.get("id"), name, sex, age, password, description);
+		Userm.refreshUser(request);
 		return JsonHelper.jsonEncode(ret);
 	}
 	
@@ -111,5 +112,37 @@ public class UserController {
 	public String editPage(HttpServletRequest request)throws SQLException{
 		return "user/editUser";
 	}	
+	
+	@RequestMapping(value= "/follow/follow")
+	@ResponseBody
+	public String follow(HttpServletRequest request)throws SQLException{
+		Map<String,Object> user = (Map<String, Object>)request.getSession().getAttribute("user");
+		if((boolean)user.get("status") == false){
+			Map<String, Object> ret = new HashMap<>();
+			ret.put("status", false);
+			ret.put("info", "you are not loged in");
+			return JsonHelper.jsonEncode(ret);
+		}
+		String uid2 = request.getParameter("uid2");
+		Map<String, Object> ret = Userm.follow(String.valueOf(user.get("id")), uid2);
+		Userm.refreshUser(request);
+		return JsonHelper.jsonEncode(ret);
+	}
+	
+	@RequestMapping(value= "/follow/unfollow")
+	@ResponseBody
+	public String unfollow(HttpServletRequest request)throws SQLException{
+		Map<String,Object> user = (Map<String, Object>)request.getSession().getAttribute("user");
+		if((boolean)user.get("status") == false){
+			Map<String, Object> ret = new HashMap<>();
+			ret.put("status", false);
+			ret.put("info", "you are not loged in");
+			return JsonHelper.jsonEncode(ret);
+		}
+		String uid2 = request.getParameter("uid2");
+		Map<String, Object> ret = Userm.unFollow(String.valueOf(user.get("id")), uid2);
+		Userm.refreshUser(request);
+		return JsonHelper.jsonEncode(ret);
+	}
 }
  
