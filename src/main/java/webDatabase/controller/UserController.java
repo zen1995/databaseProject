@@ -69,7 +69,7 @@ public class UserController {
 		return "user/userSpace";
 	}
 	
-	@RequestMapping(value= "/register/checkAccount",method = RequestMethod.GET)
+	@RequestMapping(value= "/register/checkAccount")
 	@ResponseBody
 	public String checkAccount(HttpServletRequest request)throws SQLException{
 		String account = request.getParameter("account");

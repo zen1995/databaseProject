@@ -60,7 +60,8 @@ public class Userm {
 		Map<String,Object> ret = new HashMap<>();
 		ret.put("status", true);
 		return ret;
-
 	}
-	
+	public static void main(String[] args)throws Exception {
+		register("aaaassaa","tsst", "asa", "asa");
+	}
 }

@@ -1,0 +1,13 @@
+DELIMITER 
+CREATE FUNCTION  follow(u_user1 int,u_user2 int) 
+returns int
+BEGIN
+declare c int;
+select count(*) from userfollow where user1=u_user1 and user2=u_user2 into c;
+if c != 0 then
+	return -1;
+else
+	insert into userfollow (user1,user2) values (u_user1,u_user2);
+end if;
+return 0;
+END

@@ -95,13 +95,32 @@ public class TableCreator {
 		DatabaseHelper.executeSql(sql);
 	}
 	
+	public static void createIndex()throws SQLException{
+		String sql = "create unique index userIndex on user(id)";
+		DatabaseHelper.executeSql(sql);
+		sql = "create unique index articleIndex on article(id)";
+		DatabaseHelper.executeSql(sql);
+		sql = "create unique index articlelikeIndex1 on articlelike(userId)";
+		DatabaseHelper.executeSql(sql);
+		sql = "create unique index articlelikeIndex2 on articlelike(articleId)";
+		DatabaseHelper.executeSql(sql);
+		sql = "create unique index articletagIndex1 on articletag(articleId)";
+		DatabaseHelper.executeSql(sql);
+		sql = "create unique index articletagIndex2 on articletag(tagId)";
+		DatabaseHelper.executeSql(sql);	
+		sql = "create unique index tagIndex on tag(id)";
+		DatabaseHelper.executeSql(sql);	
+		sql = "create unique index userFollowIndex1 on userfollow(user1)";
+		DatabaseHelper.executeSql(sql);
+		sql = "create unique index userFollowIndex2 on userfollow(user2)";
+		DatabaseHelper.executeSql(sql);	
+	}
 
 
 
-
-	public static void init() {
+	public static void init() throws Exception{
 		create();
-		
+		createIndex();
 	}
 
 	public static void main(String[] args) throws Exception {
