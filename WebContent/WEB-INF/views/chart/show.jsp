@@ -18,8 +18,11 @@
 		<div class="col s8">
 			<div id="popularUser" style="width: 100%;height:400px;"></div>
 		</div>
-		<div class="col s12">
+		<div class="col s6">
 			<div id="popularArticle" style="width: 100%;height:400px;"></div>
+		</div>
+		<div class="col s6">
+			<div id="mostFan" style="width: 100%;height:400px;"></div>
 		</div>
 	</div>
 </div>
@@ -28,6 +31,7 @@
 var sexData = <c:out value="${sexData}" escapeXml= "false"></c:out>
 var userData = <c:out value="${popularUser}" escapeXml= "false"></c:out>
 var articleData = <c:out value="${popularArticle}" escapeXml= "false"></c:out>
+var mostFan = <c:out value="${mostFan}" escapeXml= "false"></c:out>
 </script>
 
 <%@include file="/WEB-INF/views/frame/footer.jsp"%>

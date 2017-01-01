@@ -28,6 +28,8 @@ public class ChartController {
     	String popularUData = JsonHelper.jsonEncode(popularUser);
     	model.addAttribute("popularUser", popularUData);
     	model.addAttribute("popularArticle",JsonHelper.jsonEncode(Chartm.getPopularArticle()));
+    	model.addAttribute("mostFan",JsonHelper.jsonEncode(Chartm.getMostLikeUser()));
+
     	return "chart/show";
     }
 }
