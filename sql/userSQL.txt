@@ -1,0 +1,13 @@
+DELIMITER 
+CREATE FUNCTION addUser(u_account text,u_name text,u_password text,u_sex text) 
+returns int
+BEGIN
+declare c int;
+select count(*) from user where account=u_account into c;
+if c =0 then
+	insert into user (account,name,password,registerTime) values (u_account,u_name,u_password,u_sex);
+	return 0;
+else 
+	return -1;
+end if;
+END

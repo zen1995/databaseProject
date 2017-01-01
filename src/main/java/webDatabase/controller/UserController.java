@@ -60,7 +60,7 @@ public class UserController {
 		
 		if(!Userm.isLogin(request)){
 			model.addAttribute("info", "you are not loged in!");
-			return "error Page";
+			return "other/errPage";
 		}
 		model.addAttribute("articles",Articlem.getUserArticle(String.valueOf(user.get("id"))));
 		model.addAttribute("user",user);
