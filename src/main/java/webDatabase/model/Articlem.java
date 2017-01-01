@@ -53,12 +53,13 @@ public class Articlem {
 	public static List<Map<String, Object>> search(String type, String key)throws SQLException {
 		List<Pair> list = new ArrayList<>();
 		DatabaseResult result;
+		key = "%"+key+"%";
 		if (type.equals("name")) {
-			String sql = "select * from user join article on user.id = article.publishUser where name = ?";
+			String sql = "select * from user join article on user.id = article.publishUser where name like ?";
 			result = DatabaseHelper.query(sql,key);
 		}
 		else if (type.equals("tag")) {
-			String sql = "select * from article join articletag  on article.id=articletag.articleid join tag on tag.id=articletag.tagid where tagName =?";
+			String sql = "select * from article join articletag  on article.id=articletag.articleid join tag on tag.id=articletag.tagid where tagName like ?";
 			result = DatabaseHelper.query(sql,key);
 		}
 		else {

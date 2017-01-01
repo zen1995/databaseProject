@@ -164,7 +164,7 @@ public class UserController {
 		//HashMap<String,Object> user = (HashMap<String,Object>)request.getSession().getAttribute("user");
 		model.addAttribute("articles",Articlem.getUserArticle(uid));
 		model.addAttribute("spaceUser",Userm.getUserById(uid));
-		return "user/userSpace";
+		return "user/space";
 	}
 	
 }
