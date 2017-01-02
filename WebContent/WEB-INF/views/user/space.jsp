@@ -4,24 +4,25 @@
 <div class="container center col m8 offset-m2 s12 " >
 <div class="row">
      <div class="">
+    <!--  <c:out value="${spaceUser}"></c:out> -->
        <div class="card light-blue lighten-1 ">
          <div class="card-content white-text">
-           <span class="card-title">用户：<c:out value="${user.name }"></c:out></span>
-           <p>性别:<c:out value="${user.sex }"></c:out>
-                                    年龄:<c:out value="${user.age }"></c:out></p>
-           <p>个签:<c:out value="${user.description }"></c:out></p>
+           <span class="card-title">用户：<c:out value="${spaceUser.name }"></c:out></span>
+           <p>性别:<c:out value="${spaceUser.sex }"></c:out>
+                                    年龄:<c:out value="${spaceUser.age }"></c:out></p>
+           <p>个签:<c:out value="${spaceUser.description }"></c:out></p>
            <p>喜欢的用户：</p>
-           <c:forEach items = "${user.fin }" var="user">
+           <c:forEach items = "${spaceUser.fin }" var="user">
            <c:out value="${user.name }"></c:out>
            </c:forEach>
            <p>被以下用户喜欢：</p>
-           <c:forEach items = "${user.fout }" var="user">
+           <c:forEach items = "${spaceUser.fout }" var="user">
            <c:out value="${user.name }"></c:out>
            </c:forEach>
          </div>
          <div class="card-action">
            <a onClick="changePage()">修改个人信息</a>
-           <a href="#" id="like" onClick="followUser(<c:out value = "${user.id}"></c:out>)"><i class="mdi-action-favorite-outline" id="likeheart">
+           <a href="#" id="like" onClick="followUser(<c:out value = "${spaceUser.id}"></c:out>)"><i class="mdi-action-favorite-outline" id="likeheart">
            </i>like</a>
        </div> 
        </div>

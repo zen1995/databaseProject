@@ -21,8 +21,8 @@
          </div>
          <div class="card-action">
            <a onClick="changePage()">修改个人信息</a>
-           <a href="#" id="like" onClick="followUser(<c:out value = "${user.id}"></c:out>)"><i class="mdi-action-favorite-outline" id="likeheart">
-           </i>like</a>
+        <!--   <a href="#" id="like" onClick="followUser(<c:out value = "${user.id}"></c:out>)"><i class="mdi-action-favorite-outline" id="likeheart">
+           </i>like</a>  -->
        </div> 
        </div>
        

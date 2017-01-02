@@ -89,7 +89,7 @@
      						查看文章<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 							<ul id="userSearch-p" class="dropdown-content">
 							<li class="divider" ></li>
-			     			<!-- <li><a href="/?showType=bytime" class='black-text'>新加入</a></li> -->
+			     			<li><a href="/?showType=bytime" class='black-text'>总体图表 </a></li>
 			     			<li><a onClick="findUser()" class='blue-text'>精确查找</a></li>
 							</ul>
      						<li><a class="dropdown-button" href="#!" data-activates="userSearch-p">
@@ -132,7 +132,7 @@
     					查看文章<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 						<ul id="userSearch" class="dropdown-content">
 						<li class="divider" ></li>
-			     	<!--	<li><a href="/?showType=bytime" class='blue-text'>新加入</a></li> -->
+			     	    <li><a href="/chart/show" class='blue-text'>查看图表</a></li>
 			     		<li><a onClick="findUser()" class='blue-text'>精确查找</a></li>
 						</ul>
     					<li><a class="dropdown-button" href="#!" data-activates="userSearch">

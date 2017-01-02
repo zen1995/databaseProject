@@ -300,8 +300,9 @@ function editUser(){
 	$.ajax(ajax);
 }
 function findUser(){
-    window.location.href="/user/search";
+	window.location.href="/user/search";
 }
+
 
 function followUser(Uid2){
 	var data={uid2:Uid2};
@@ -314,9 +315,9 @@ function followUser(Uid2){
 		success:function(data){
             data=eval('('+data+')');
             if(data.status == true){
-            	alert("unfollow");
+            	//alert("unfollow");
             	like.className = "mdi-action-favorite-outline";
-            	window.location.href="/user/";
+            	window.location.href="/user/space/"+Uid2;
             }
             else{
             	
@@ -330,9 +331,9 @@ function followUser(Uid2){
 		success:function(data){
             data=eval('('+data+')');
             if(data.status == true){
-            	alert("follow");
+            	//alert("follow");
             	like.className = "mdi-action-favorite";
-            	window.location.href="/user/";
+            	window.location.href="/user/space/"+Uid2;
             }
             else{
             	$.ajax(ajax1);

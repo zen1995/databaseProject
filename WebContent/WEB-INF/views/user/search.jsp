@@ -5,11 +5,17 @@
   <div class="row">
     <div class="col s12 m6 offset-m3">
     <ul class="collection">
-    <c:out value="${users }"> </c:out>
-     	<c:forEach items = "${users}" var = "user">
-     	  <a class="collection-item" 
-     	  href='/user/space/<c:out value="${user.id }"></c:out>'><c:out value="${user.name }"></c:out></a>
-     	</c:forEach>
+     	<div class="row" style="margin-left:20%">
+       			<form action="/user/s" method="post">
+			        <div class="input-field col s6">
+						<input id="userName" name="userName" type="text" class="validate">
+						<label for="userName">User Name</label>
+			        </div>
+			        <div class="input-field col s6">
+			            <button class="waves-effect waves-light blue btn" type="submit"><i class="mdi-file-cloud left"></i>Search</button>
+			        </div>
+			    </form>
+	      	</div>
      </ul>
   </div>
 	</div>
