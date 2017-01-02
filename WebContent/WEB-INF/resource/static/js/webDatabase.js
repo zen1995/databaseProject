@@ -194,6 +194,7 @@ function insertUser(){
     var mal = $('input:radio[name="sex"]:checked').val();
     var warning1 = $("#warning1"); 
     var warning2 = $("#warning2"); 
+    var warning3 = $("#warning3");
     var data={account:act, name:nm, password:pw, sex:sex};
     if(mal == 1)
     	sex="male";
@@ -203,26 +204,32 @@ function insertUser(){
     	warning1.css("display", "inline");
     	return;
     }
+    else{
+    	warning1.css("display", "none");
+    }
     if(pw.length < 6){
     	warning2.css("display", "inline");
     	return;
     }
+    else
+    	warning2.css("display", "none");
     var ajax = $.extend({},config.ajaxConfig,
     		{
 		url:"/user/register/register",
 		data:data,
 		success:function(data){
             data=eval('('+data+')');
+            //alert(data);
             if(data.status == true){
             	window.location.href="/";
             }
             else{
+            	alert(data.info);
+            	warning3.css("display", "inline");
             }
 		}
 	});
-	if(event.returnValue){
-		$.ajax(ajax);
-	}
+	$.ajax(ajax);
 }
 function articleEdit(aid){
 	window.location.href="/article/modifyPage/"+aid;
@@ -291,7 +298,7 @@ function editUser(){
 		success:function(data){
             data=eval('('+data+')');
             if(data.status == true){
-            	window.location.href="/";
+            	window.location.href="/user/";
             }
             else{
             }

@@ -155,8 +155,8 @@ function initPupolarArticle(echarts,theme){
     	xData.push(d.title);
     	SData.push(d.likeCount);
     }
-    //console.log(xData);
-    //console.log(SData);
+    console.log(xData);
+    console.log(SData);
     option.series[0].name = '点赞数';
     option.series[0].data = SData;
     option.xAxis.data = xData;

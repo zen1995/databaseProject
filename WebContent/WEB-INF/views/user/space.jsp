@@ -12,16 +12,16 @@
                                     年龄:<c:out value="${spaceUser.age }"></c:out></p>
            <p>个签:<c:out value="${spaceUser.description }"></c:out></p>
            <p>喜欢的用户：</p>
-           <c:forEach items = "${spaceUser.fin }" var="user">
+           <c:forEach items = "${spaceUser.fout }" var="user">
            <c:out value="${user.name }"></c:out>
            </c:forEach>
            <p>被以下用户喜欢：</p>
-           <c:forEach items = "${spaceUser.fout }" var="user">
+           <c:forEach items = "${spaceUser.fin }" var="user">
            <c:out value="${user.name }"></c:out>
            </c:forEach>
          </div>
          <div class="card-action">
-           <a onClick="changePage()">修改个人信息</a>
+          <!--  <a onClick="changePage()">修改个人信息</a> -->
            <a href="#" id="like" onClick="followUser(<c:out value = "${spaceUser.id}"></c:out>)"><i class="mdi-action-favorite-outline" id="likeheart">
            </i>like</a>
        </div> 

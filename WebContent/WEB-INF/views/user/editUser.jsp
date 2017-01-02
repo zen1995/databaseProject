@@ -3,7 +3,6 @@
 <div class="container" ng-controller = "register">
     <div class="row">
         <div class="col m6 offset-m3 s10 offset-s1">
-<c:out value="${user }"></c:out>
             <form name="input" action="/user/register" method="POST">
             
                 <div class="input-field">
@@ -49,7 +48,6 @@
                 <a class="waves-effect waves-light btn blue white-text" onclick="editUser()">确定修改</a>
             </form>
         </div>
-    </div>
 </div>
 
 <script >

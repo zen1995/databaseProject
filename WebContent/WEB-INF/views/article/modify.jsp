@@ -7,13 +7,15 @@
     <form class="col m6 offset-m3 s12">
       <div class="row">
         <div class="input-field col s6">
-          <input id="title" type="text" name="title" length="10">
+          <input id="title" type="text" name="title" length="10" 
+          value="<c:out value="${article.title }"></c:out>">
           <label for="title">标题</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <textarea id="content" name="content" class="materialize-textarea" length="1200"></textarea>
+          <textarea id="content" name="content" class="materialize-textarea" length="1200"
+          ><c:out value="${article.content }"></c:out></textarea>
           <label for="content">内容</label>
         </div>
       </div>

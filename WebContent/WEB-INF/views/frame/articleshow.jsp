@@ -24,6 +24,8 @@
                        ng-bind-html = "(article.type == 'markdown'? (article.content | replaceEnter) : (article.content) )| noImg | trustHTML">
                     	<c:out value = "${article.content}"></c:out>
                     </p>
+                    <div class="divider"></div>
+                    <p class="grey-text ">Like: <c:out value="${article.likeCount }"></c:out></p>
                 </div>
                <!--  <div class="card-action">
                     <a ng-href="{{'/article/show/'+article.id}}" id = "detailLink">view detail</a>

@@ -9,6 +9,7 @@
                 <div class="input-field">
                     <label for="useraccount">user account</label>
                     <input id = "useraccount" type="text" name="userAccount"autocomplete="off"/>
+               		<p class="red-text" id="warning3" style="display:none">用户名重复</p>
                 </div>
                 
                 <div class="input-field">

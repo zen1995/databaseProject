@@ -12,7 +12,7 @@
 
 <html>
 <head>
-<title>utopialab</title>
+<title>LFPM</title>
 <script src="/resource/static/js/jquery-1.8.3.min.js"></script>
 <!--
   <script src="/resource/static/js/angular.min.js"></script>-->
@@ -38,7 +38,7 @@
 			<nav class="light-blue lighten-1 z-depth-0" role="navigation"
 				style="">
 				<div class="nav-wrapper container ">
-					<a id="logo-container" href="/" class="brand-logo navbar-left">utopiaLab</a>
+					<a id="logo-container" href="/" class="brand-logo navbar-left">LFPM</a>
 					<a href="#" data-activates="mobile-demo" class="button-collapse">
 						<i class="material-icons">menu</i>
 					</a>
@@ -86,15 +86,15 @@
 			      			<li><a href="/article/byuser" class='black-text'>按用户</a></li>
 							</ul>
      						<li><a class="dropdown-button" href="#!" data-activates="articleSearch-p">
-     						查看文章<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+     						撰写文章<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 							<ul id="userSearch-p" class="dropdown-content">
 							<li class="divider" ></li>
-			     			<li><a href="/?showType=bytime" class='black-text'>总体图表 </a></li>
+			     			
 			     			<li><a onClick="findUser()" class='blue-text'>精确查找</a></li>
 							</ul>
      						<li><a class="dropdown-button" href="#!" data-activates="userSearch-p">
      						查找用户<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
-							
+							<a href="/chart/show" class='white-text center-align'>查看图表</a>
 							<!-- <li><a href="footer">页脚</a></li>
 							<li><a href="mobile">手机</a></li> -->
 						
@@ -111,13 +111,15 @@
 				    <ul class="hide-on-med-and-down">
 				    	<c:if test="${user.status == true}">
 				    	<ul id="editself" class="dropdown-content">
-						<li><a href="/article/addPage" class='blue-text'>纂写文章</a></li>
+						<li><a href="/article/addPage" class='blue-text'>撰写文章</a></li>
 			      		<li class="divider" ></li>
 			      		<li><a href="/user/" class='blue-text'>个人信息</a></li>
 						</ul>
     					<li><a class="dropdown-button" href="#!" data-activates="editself">
     					个人操作<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+    					<li><a href="/chart/show" class='white-text center-align'>统计图表</a></li>
 						</c:if>
+						
 				    	
 				    	
 				    	
@@ -126,17 +128,16 @@
 						<li><a href="/?showType=bylike" class='blue-text'>点赞数</a></li>
 			      		<li class="divider" ></li>
 			      		<li><a href="/?showType=bytime" class='blue-text'>最新</a></li>
-			      		<li><a href="/article/byuser" class='blue-text'>按用户</a></li>
+			      		<li><a href="/article/byuser" class='blue-text'>搜索</a></li>
 						</ul>
     					<li><a class="dropdown-button" href="#!" data-activates="articleSearch">
     					查看文章<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 						<ul id="userSearch" class="dropdown-content">
 						<li class="divider" ></li>
-			     	    <li><a href="/chart/show" class='blue-text'>查看图表</a></li>
 			     		<li><a onClick="findUser()" class='blue-text'>精确查找</a></li>
 						</ul>
-    					<li><a class="dropdown-button" href="#!" data-activates="userSearch">
-    					查找用户<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+    					<li><a class="white-text" onClick="findUser()" href="#!" data-activates="userSearch">
+    					查找用户 </a></li>
 				   </ul>
 				    
 			    </div>
