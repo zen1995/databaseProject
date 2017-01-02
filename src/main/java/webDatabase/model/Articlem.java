@@ -59,7 +59,7 @@ public class Articlem {
 			result = DatabaseHelper.query(sql,key);
 		}
 		else if (type.equals("tag")) {
-			String sql = "select * from article join articletag  on article.id=articletag.articleid join tag on tag.id=articletag.tagid where tagName like ?";
+			String sql = "select * from articleview join articletag  on article.id=articletag.articleid join tag on tag.id=articletag.tagid where tagName like ?";
 			result = DatabaseHelper.query(sql,key);
 		}
 		else {
