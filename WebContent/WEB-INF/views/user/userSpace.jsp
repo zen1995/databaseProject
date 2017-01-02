@@ -11,11 +11,11 @@
                                     年龄:<c:out value="${user.age }"></c:out></p>
            <p>个签:<c:out value="${user.description }"></c:out></p>
            <p>喜欢的用户：</p>
-           <c:forEach items = "${user.fin }" var="user">
+           <c:forEach items = "${user.fout }" var="user">
            <c:out value="${user.name }"></c:out>
            </c:forEach>
            <p>被以下用户喜欢：</p>
-           <c:forEach items = "${user.fout }" var="user">
+           <c:forEach items = "${user.fin }" var="user">
            <c:out value="${user.name }"></c:out>
            </c:forEach>
          </div>
