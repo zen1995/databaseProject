@@ -44,10 +44,12 @@
             	 <c:out value="${tag.tagName }"></c:out></span> -->
             	 <span class="new badge" style="position:relative; margin-right:10px; left:10px;font-weight: 400; font-size: 1.2rem;"> <c:out value="${tag.tagName }"></c:out></span>
             	 </a>
-			    </c:forEach> 
+			    </c:forEach>  
 			    <div>
 			   	  <div class="col s1">
+			   	  <c:if test="${user.status == true}">
 		          <a onClick="addTagInput()"><i class="small mdi-content-add-circle-outline" ></i></a>
+		          </c:if>
 		          </div>
 		          <div class="col s6">
 		          <input id="inputTagName" style="display:none" type="text" class="validate">
