@@ -32,10 +32,11 @@
                     </div>
             </div>
             <div class="card-action">
-            <c:if test="${user.status == true}">
-                <a href="#" id="like" onClick="likeArticle(<c:out value = "${article.id}"></c:out>)"><i class="mdi-action-favorite-outline" id="likeheart">
+            
+                <a href="#" id="like" <c:if test="${user.status == true}"> onClick="likeArticle(<c:out value = "${article.id}"></c:out>)"</c:if>><i class="mdi-action-favorite-outline" id="likeheart">
+            
                 </i>like <span id="likeNum"><c:out value="${article.likeCount}"></c:out></span> </a>
-            </c:if>
+            
             <div class="row">
             	<c:forEach items = "${tag }" var = "tag">
             	 <a onClick="deletTag(<c:out value="${article.id}"></c:out>,<c:out value="${tag.tagId}"></c:out>)"> 
